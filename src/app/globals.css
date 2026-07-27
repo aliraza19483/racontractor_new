@@ -1,26 +1,469 @@
 @import "tailwindcss";
 
+/* ============================================================
+   RA CONTRACTOR — Design System
+   Luxury · Elegant · Turnkey · Precision
+   ============================================================ */
+
+/* ============================================================
+   CSS Custom Properties (Design Tokens)
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Colors */
+  --color-navy: #0A1628;
+  --color-navy-light: #132238;
+  --color-navy-medium: #1A2D47;
+  --color-white: #FAFAF9;
+  --color-white-pure: #FFFFFF;
+  --color-gold: #C9A96E;
+  --color-gold-light: #D4BC8B;
+  --color-gold-dark: #B8943F;
+
+  /* Secondary Colors */
+  --color-beige: #F5F0EB;
+  --color-beige-dark: #E8DFD4;
+  --color-gray-light: #E8E4DF;
+  --color-gray-medium: #9CA3AF;
+  --color-black-soft: #1A1A1A;
+  --color-black-rich: #0D0D0D;
+
+  /* Functional */
+  --background: var(--color-white);
+  --foreground: var(--color-black-soft);
+  --muted: var(--color-beige);
+  --muted-foreground: var(--color-gray-medium);
+  --border: var(--color-gray-light);
+  --accent: var(--color-gold);
+  --accent-foreground: var(--color-white);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(10, 22, 40, 0.04);
+  --shadow-md: 0 4px 16px rgba(10, 22, 40, 0.06);
+  --shadow-lg: 0 8px 32px rgba(10, 22, 40, 0.08);
+  --shadow-xl: 0 16px 48px rgba(10, 22, 40, 0.12);
+  --shadow-gold: 0 4px 24px rgba(201, 169, 110, 0.2);
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+
+  /* Transitions */
+  --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 700ms;
+  --duration-luxe: 1000ms;
 }
 
+/* ============================================================
+   Tailwind Theme Integration
+   ============================================================ */
 @theme inline {
+  /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-navy: var(--color-navy);
+  --color-navy-light: var(--color-navy-light);
+  --color-navy-medium: var(--color-navy-medium);
+  --color-gold: var(--color-gold);
+  --color-gold-light: var(--color-gold-light);
+  --color-gold-dark: var(--color-gold-dark);
+  --color-beige: var(--color-beige);
+  --color-beige-dark: var(--color-beige-dark);
+  --color-gray-light: var(--color-gray-light);
+  --color-gray-medium: var(--color-gray-medium);
+  --color-black-soft: var(--color-black-soft);
+  --color-black-rich: var(--color-black-rich);
+  --color-white-pure: var(--color-white-pure);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  /* Fonts */
+  --font-playfair: var(--font-playfair);
+  --font-body: var(--font-dm-sans);
+  --font-cormorant: var(--font-cormorant);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================================
+   Global Reset & Base Styles
+   ============================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scrolling */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Luxury selection color */
+::selection {
+  background: var(--color-gold);
+  color: var(--color-navy);
+}
+
+::-moz-selection {
+  background: var(--color-gold);
+  color: var(--color-navy);
+}
+
+/* Smooth scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-navy);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-light);
+}
+
+/* ============================================================
+   Typography
+   ============================================================ */
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-playfair), "Times New Roman", serif;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--foreground);
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  h4 {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+  }
+
+  p {
+    font-family: var(--font-dm-sans), system-ui, sans-serif;
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+    line-height: 1.8;
+    color: var(--muted-foreground);
+  }
+}
+
+/* Accent text style */
+.text-accent-serif {
+  font-family: var(--font-cormorant), "Georgia", serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Gold gradient text */
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light), var(--color-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   Section & Layout Utilities
+   ============================================================ */
+
+.section {
+  padding: clamp(4rem, 8vw, 8rem) 0;
+  position: relative;
+}
+
+.section-dark {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+
+.section-dark h1,
+.section-dark h2,
+.section-dark h3,
+.section-dark h4,
+.section-dark h5,
+.section-dark h6 {
+  color: var(--color-white);
+}
+
+.section-dark p {
+  color: rgba(250, 250, 249, 0.7);
+}
+
+.section-beige {
+  background: var(--color-beige);
+}
+
+.container-luxury {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+}
+
+/* ============================================================
+   Glassmorphism
+   ============================================================ */
+
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================================
+   Button Base Styles
+   ============================================================ */
+
+.btn-luxury {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: all var(--duration-normal) var(--ease-luxury);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gold {
+  background: var(--color-gold);
+  color: var(--color-navy);
+  border: none;
+}
+
+.btn-gold:hover {
+  background: var(--color-gold-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-white);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+  transform: translateY(-2px);
+}
+
+.btn-outline-dark {
+  background: transparent;
+  color: var(--color-navy);
+  border: 1px solid var(--color-navy);
+}
+
+.btn-outline-dark:hover {
+  background: var(--color-navy);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   Gold Divider
+   ============================================================ */
+
+.divider-gold {
+  width: 48px;
+  height: 2px;
+  background: var(--color-gold);
+  margin: 1rem 0;
+}
+
+.divider-gold-center {
+  width: 48px;
+  height: 2px;
+  background: var(--color-gold);
+  margin: 1rem auto;
+}
+
+/* ============================================================
+   Image Styles
+   ============================================================ */
+
+.img-luxury {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.img-luxury img {
+  transition: transform var(--duration-slow) var(--ease-luxury);
+}
+
+.img-luxury:hover img {
+  transform: scale(1.05);
+}
+
+/* ============================================================
+   Animated Underline
+   ============================================================ */
+
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-gold);
+  transition: width var(--duration-normal) var(--ease-luxury);
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* ============================================================
+   Loading / Preloader
+   ============================================================ */
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes scroll-indicator {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.5; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ============================================================
+   Utility Animations
+   ============================================================ */
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s var(--ease-luxury) forwards;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-navy-light) 25%,
+    var(--color-navy-medium) 50%,
+    var(--color-navy-light) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+.animate-pulse-gold {
+  animation: pulse-gold 2s ease-in-out infinite;
+}
+
+.animate-scroll-indicator {
+  animation: scroll-indicator 2s ease-in-out infinite;
+}
+
+/* ============================================================
+   Responsive Image Aspect Ratios
+   ============================================================ */
+
+.aspect-luxury {
+  aspect-ratio: 4 / 5;
+}
+
+.aspect-wide {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-cinema {
+  aspect-ratio: 21 / 9;
+}
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+/* ============================================================
+   Marquee
+   ============================================================ */
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }

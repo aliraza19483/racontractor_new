@@ -85,7 +85,9 @@ const initialTestimonials: TestimonialItem[] = [
 const GOOGLE_MAPS_LINK = "https://maps.app.goo.gl/Fr5AXyx2DzKuqXZN8";
 
 export default function Testimonials() {
-  const [reviewsList] = useState<TestimonialItem[]>(initialTestimonials);
+  const [reviewsList, setReviewsList] = useState<TestimonialItem[]>(initialTestimonials);
+  const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
+  const [isLiveGoogle, setIsLiveGoogle] = useState(false);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
@@ -96,6 +98,26 @@ export default function Testimonials() {
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+
+  useEffect(() => {
+    async function fetchGoogleReviews() {
+      try {
+        const res = await fetch("/api/google-reviews");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.reviews && data.reviews.length > 0) {
+            setReviewsList(data.reviews);
+            if (data.isLive) {
+              setIsLiveGoogle(true);
+            }
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch live Google reviews:", err);
+      }
+    }
+    fetchGoogleReviews();
+  }, []);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -212,14 +234,27 @@ export default function Testimonials() {
 
                       {/* Client Info */}
                       <div className="flex items-center justify-center gap-3">
-                        <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[var(--color-gold)]/40 bg-[var(--color-gold)]/10">
-                          <Image
-                            src={testimonial.clientImage}
-                            alt={testimonial.clientName}
-                            width={48}
-                            height={48}
-                            className="object-cover w-full h-full"
-                          />
+                        <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[var(--color-gold)]/40 bg-[var(--color-gold)]/20 shrink-0 flex items-center justify-center font-bold text-white text-sm">
+                          {!imgErrors[testimonial.id] ? (
+                            <Image
+                              src={testimonial.clientImage}
+                              alt={testimonial.clientName}
+                              width={48}
+                              height={48}
+                              className="object-cover w-full h-full"
+                              onError={() => setImgErrors((prev) => ({ ...prev, [testimonial.id]: true }))}
+                            />
+                          ) : (
+                            <span>
+                              {testimonial.clientName
+                                .split(" ")
+                                .filter(Boolean)
+                                .slice(0, 2)
+                                .map((n) => n[0])
+                                .join("")
+                                .toUpperCase()}
+                            </span>
+                          )}
                         </div>
                         <div className="text-left">
                           <h4 className="text-sm font-semibold text-white font-[family-name:var(--font-dm-sans)]">

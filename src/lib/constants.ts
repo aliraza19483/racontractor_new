@@ -7,10 +7,10 @@ export const siteConfig: SiteConfig = {
   name: "RA CONTRACTOR",
   description:
     "Creating timeless structures and interiors for modern living. Premier specialists in False Ceiling, Painting, Electrical Installation, Turnkey Civil Construction, and Bespoke Interior Execution in Hyderabad and across India.",
-  url: "https://racontractor.com",
+  url: "https://racontractor.in",
   ogImage: "/images/og-image.jpg",
   phone: "+91 83748 97487",
-  email: "hello@racontractor.com",
+  email: "racontractor35@gmail.com",
   whatsapp: "+918374897487",
   address: "Allapur Rd, near JK Point, Swaraj Nagar, Borabanda, Hyderabad, Telangana 500114",
   googleMapsUrl: "https://maps.app.goo.gl/Fr5AXyx2DzKuqXZN8",

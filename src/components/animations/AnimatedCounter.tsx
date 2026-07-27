@@ -15,7 +15,8 @@ export default function AnimatedCounter({
   duration = 2000,
   className = "",
 }: AnimatedCounterProps) {
-  const [count, setCount] = useState(0);
+  // Initialize with target value so initial HTML & SEO crawlers index actual numbers
+  const [count, setCount] = useState(value);
   const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
 
@@ -41,6 +42,7 @@ export default function AnimatedCounter({
             }
           };
 
+          setCount(0);
           requestAnimationFrame(animate);
         }
       },

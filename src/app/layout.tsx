@@ -8,7 +8,7 @@ import FloatingActions from "@/components/common/FloatingActions";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://racontractor.com"),
+  metadataBase: new URL("https://racontractor.in"),
   title: {
     default: "RA CONTRACTOR — Luxury Civil Construction, Turnkey & Interior Execution",
     template: "%s | RA CONTRACTOR",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://racontractor.com",
+    url: "https://racontractor.in",
     siteName: "RA CONTRACTOR",
     title: "RA CONTRACTOR — Luxury Civil Construction, Turnkey & Interior Execution",
     description:
@@ -68,6 +68,57 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  name: "RA CONTRACTOR",
+  image: "https://racontractor.in/images/og-image.jpg",
+  "@id": "https://racontractor.in/#organization",
+  url: "https://racontractor.in",
+  telephone: "+91 83748 97487",
+  email: "racontractor35@gmail.com",
+  priceRange: "₹₹",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Allapur Rd, near JK Point, Swaraj Nagar, Borabanda",
+    addressLocality: "Hyderabad",
+    addressRegion: "Telangana",
+    postalCode: "500114",
+    addressCountry: "IN",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 17.4529,
+    longitude: 78.4062,
+  },
+  hasMap: "https://maps.app.goo.gl/Fr5AXyx2DzKuqXZN8",
+  areaServed: [
+    {
+      "@type": "City",
+      name: "Hyderabad",
+    },
+    {
+      "@type": "AdministrativeArea",
+      name: "Telangana",
+    },
+  ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5.0",
+    reviewCount: "6",
+    bestRating: "5",
+    worstRating: "1",
+  },
+  sameAs: [
+    "https://maps.app.goo.gl/Fr5AXyx2DzKuqXZN8",
+    "https://instagram.com/racontractor",
+    "https://facebook.com/racontractor",
+    "https://linkedin.com/company/racontractor",
+    "https://pinterest.com/racontractor",
+    "https://youtube.com/@racontractor",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -78,6 +129,12 @@ export default function RootLayout({
       lang="en"
       className={`${playfair.variable} ${dmSans.variable} ${cormorant.variable}`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body>
         <SmoothScrollProvider>
           <SplashScreen />

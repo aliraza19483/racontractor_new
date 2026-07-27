@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { navItems, siteConfig } from "@/lib/constants";

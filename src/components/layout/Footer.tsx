@@ -38,12 +38,13 @@ const SocialIcons = {
 };
 
 const footerServices = [
-  { label: "Living Room Design", href: "/#categories" },
-  { label: "Modular Kitchen", href: "/#categories" },
-  { label: "Bedroom Interior", href: "/#categories" },
-  { label: "Office Interior", href: "/#categories" },
-  { label: "Bathroom Design", href: "/#categories" },
-  { label: "Wardrobe Design", href: "/#categories" },
+  { label: "Civil & Construction", href: "/services/civil-contractors-hyderabad" },
+  { label: "Turnkey Construction", href: "/services/turnkey-construction-hyderabad" },
+  { label: "False Ceiling & Lighting", href: "/services/false-ceiling-hyderabad" },
+  { label: "Painting & Wall Finishes", href: "/services/painting-contractors-hyderabad" },
+  { label: "Electrical & Wiring", href: "/services/electrical-contractors-hyderabad" },
+  { label: "Modular Kitchens", href: "/services/modular-kitchen-hyderabad" },
+  { label: "Commercial Fit-outs", href: "/services/commercial-interior-contractors-hyderabad" },
 ];
 
 export default function Footer() {

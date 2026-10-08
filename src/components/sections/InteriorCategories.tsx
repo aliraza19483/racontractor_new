@@ -21,15 +21,15 @@ export default function InteriorCategories() {
     <section className="section section-dark" id="categories">
       <div className="container-luxury">
         <SectionHeading
-          eyebrow="Spaces We Construct & Design"
-          title="Construction & Interior Categories"
-          description="From turnkey residential villas to sophisticated commercial spaces, we execute every project with structural excellence and bespoke design."
+          eyebrow="What We Do"
+          title="Turnkey Construction & Interior Services in Hyderabad"
+          description="False ceiling, painting, electrical, carpentry and complete interiors for homes and commercial spaces, all under one contract."
           dark
         />
 
         <div
           ref={ref}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4"
         >
           {interiorCategories.map((category, i) => (
             <motion.div
@@ -54,16 +54,12 @@ export default function InteriorCategories() {
                     image: category.image,
                   })
                 }
-                className={`group relative block overflow-hidden rounded-lg cursor-pointer ${
-                  i === 0 || i === 5
-                    ? "md:row-span-2 aspect-[3/4] md:aspect-auto md:h-full"
-                    : "aspect-[4/3]"
-                }`}
-              >
+                className="group relative block overflow-hidden rounded-lg cursor-pointer aspect-[4/3]"
+                >
                 {/* Image */}
                 <Image
                   src={category.image}
-                  alt={`${category.title} execution by RA CONTRACTOR`}
+                  alt={`${category.title} in Hyderabad by RA Contractor`}
                   fill
                   className="object-cover transition-transform group-hover:scale-110"
                   style={{ transitionDuration: "var(--duration-slow)" }}

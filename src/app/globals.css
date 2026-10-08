@@ -104,6 +104,7 @@
 
 html {
   scroll-behavior: auto; /* Lenis handles smooth scrolling */
+  scroll-padding-top: 100px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;

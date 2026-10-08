@@ -37,7 +37,7 @@ export default function WhyChooseUs() {
       <div className="container-luxury">
         <SectionHeading
           eyebrow="Why Choose Us"
-          title="The Standard of Turnkey Excellence"
+          title="Why Choose RA Contractor?"
           description="We combine structural engineering integrity with bespoke interior execution to deliver turnkey spaces that exceed expectations at every level."
         />
 

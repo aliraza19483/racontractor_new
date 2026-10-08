@@ -16,80 +16,102 @@ export interface TestimonialItem {
   rating: number;
   review: string;
   date: string;
+  timestamp?: number;
   verifiedGoogle: boolean;
 }
 
+// Helper to calculate days from relative date strings
+function parseRecencyDays(dateStr: string): number {
+  const s = (dateStr || "").toLowerCase().trim();
+  const m = s.match(/(\d+)\s+(day|week|month|year)/);
+  if (!m) return 99999;
+  const val = parseInt(m[1], 10);
+  const unit = m[2];
+  if (unit.startsWith("day")) return val;
+  if (unit.startsWith("week")) return val * 7;
+  if (unit.startsWith("month")) return val * 30;
+  if (unit.startsWith("year")) return val * 365;
+  return 99999;
+}
+
+// Ordered strictly by recency: newest positive review is ALWAYS first
 const initialTestimonials: TestimonialItem[] = [
-  {
-    id: "hyd-1",
-    clientName: "Home Theatre Crafts",
-    clientImage: "https://lh3.googleusercontent.com/a/ACg8ocL-real-avatar-htc",
-    projectType: "False Ceiling, Painting & Showroom Carpentry",
-    location: "Borabanda, Hyderabad",
-    rating: 5,
-    review:
-      "Excellent and timely service by Farhan. We used their services for False ceiling, Painting, and carpentry in our Home Theater Crafts showroom. We are very happy with the quality of work and highly recommended.",
-    date: "1 year ago",
-    verifiedGoogle: true,
-  },
-  {
-    id: "hyd-2",
-    clientName: "Mohammed Adil",
-    clientImage: "https://lh3.googleusercontent.com/a/ACg8ocL-real-avatar-ma",
-    projectType: "Gypsum False Ceiling & Concealed Wiring",
-    location: "Hyderabad",
-    rating: 5,
-    review:
-      "Excellent work very good person I thank you Mr Ansari For your Support nd corporate u will definitely recommend to my friends nd family 👍",
-    date: "10 months ago",
-    verifiedGoogle: true,
-  },
-  {
-    id: "hyd-3",
-    clientName: "Meraj Sher",
-    clientImage: "https://lh3.googleusercontent.com/a/ACg8ocL-real-avatar-ms",
-    projectType: "Complete Electrical & Ceiling Work",
-    location: "Hyderabad",
-    rating: 5,
-    review:
-      "Experience person very good work I get .At the starting the work he said me you won't complain me about anything I will will be taking responsibility. Absolutely he did that what he say.Thank you",
-    date: "9 months ago",
-    verifiedGoogle: true,
-  },
-  {
-    id: "hyd-4",
-    clientName: "Drx Mansoor Ansari (Interior Des)",
-    clientImage: "https://lh3.googleusercontent.com/grass-cs/ACvplmMSyW5T0JVagsKpXbjlLZ0jyBIYufKwfxPrVZzCd6xNpVpceJ3SRb2mQCTABjjDW9FIJMKuUpbdqfi0AO-d9wu0Lr4xP5QiQqP4rmfjvK5btP2tln2EhJHHthBFRwjmVes5H-CVoN6qrtE=k-no",
-    projectType: "Turnkey False Ceiling & Lighting",
-    location: "Hyderabad",
-    rating: 5,
-    review:
-      "Highly professional and outstanding work Work complete 💯 in given time space …",
-    date: "1 year ago",
-    verifiedGoogle: true,
-  },
   {
     id: "hyd-5",
     clientName: "Shinde Sidduu",
-    clientImage: "https://lh3.googleusercontent.com/a/ACg8ocL-real-avatar-ss",
+    clientImage: "",
     projectType: "False Ceiling & Painting Work",
     location: "Hyderabad",
     rating: 5,
     review:
       "Top-notch execution for false ceiling, painting and electrical installation in Hyderabad. Very neat and punctual work!",
     date: "3 weeks ago",
+    timestamp: Date.now() - 21 * 24 * 60 * 60 * 1000,
+    verifiedGoogle: true,
+  },
+  {
+    id: "hyd-3",
+    clientName: "Meraj Sher",
+    clientImage: "",
+    projectType: "Complete Electrical & Ceiling Work",
+    location: "Hyderabad",
+    rating: 5,
+    review:
+      "Experience person very good work I get .At the starting the work he said me you won't complain me about anything I will will be taking responsibility. Absolutely he did that what he say.Thank you",
+    date: "9 months ago",
+    timestamp: Date.now() - 270 * 24 * 60 * 60 * 1000,
+    verifiedGoogle: true,
+  },
+  {
+    id: "hyd-2",
+    clientName: "Mohammed Adil",
+    clientImage: "",
+    projectType: "Gypsum False Ceiling & Concealed Wiring",
+    location: "Hyderabad",
+    rating: 5,
+    review:
+      "Excellent work very good person I thank you Mr Ansari For your Support nd corporate u will definitely recommend to my friends nd family 👍",
+    date: "10 months ago",
+    timestamp: Date.now() - 300 * 24 * 60 * 60 * 1000,
+    verifiedGoogle: true,
+  },
+  {
+    id: "hyd-1",
+    clientName: "Home Theatre Crafts",
+    clientImage: "",
+    projectType: "False Ceiling, Painting & Showroom Carpentry",
+    location: "Borabanda, Hyderabad",
+    rating: 5,
+    review:
+      "Excellent and timely service by Farhan. We used their services for False ceiling, Painting, and carpentry in our Home Theater Crafts showroom. We are very happy with the quality of work and highly recommended.",
+    date: "1 year ago",
+    timestamp: Date.now() - 365 * 24 * 60 * 60 * 1000,
+    verifiedGoogle: true,
+  },
+  {
+    id: "hyd-4",
+    clientName: "Drx Mansoor Ansari (Interior Des)",
+    clientImage: "",
+    projectType: "Turnkey False Ceiling & Lighting",
+    location: "Hyderabad",
+    rating: 5,
+    review:
+      "Highly professional and outstanding work Work complete 💯 in given time space …",
+    date: "1 year ago",
+    timestamp: Date.now() - 370 * 24 * 60 * 60 * 1000,
     verifiedGoogle: true,
   },
   {
     id: "hyd-6",
     clientName: "Riyaz Ahmad",
-    clientImage: "https://lh3.googleusercontent.com/a/ACg8ocL-real-avatar-ra",
+    clientImage: "",
     projectType: "Interior Painting & Grid Ceiling",
     location: "Hyderabad",
     rating: 5,
     review:
       "Great quality false ceiling design and interior painting work. Professional staff and fair pricing.",
     date: "1 year ago",
+    timestamp: Date.now() - 380 * 24 * 60 * 60 * 1000,
     verifiedGoogle: true,
   },
 ];
@@ -118,9 +140,22 @@ export default function Testimonials() {
         if (res.ok) {
           const data = await res.json();
           if (data.reviews && data.reviews.length > 0) {
-            setReviewsList(data.reviews);
-            if (data.isLive) {
-              setIsLiveGoogle(true);
+            // Filter: Only good reviews (rating >= 4) with substantial text
+            const filtered = data.reviews.filter(
+              (r: TestimonialItem) => r.rating >= 4 && r.review && r.review.trim().length > 10
+            );
+
+            // Sort: Newest first (by timestamp or relative date)
+            filtered.sort((a: any, b: any) => {
+              if (a.timestamp && b.timestamp) return b.timestamp - a.timestamp;
+              return parseRecencyDays(a.date) - parseRecencyDays(b.date);
+            });
+
+            if (filtered.length > 0) {
+              setReviewsList(filtered);
+              if (data.isLive) {
+                setIsLiveGoogle(true);
+              }
             }
           }
         }
@@ -154,8 +189,8 @@ export default function Testimonials() {
       <div className="container-luxury">
         <SectionHeading
           eyebrow="Verified Client Feedback · Hyderabad"
-          title="False Ceiling, Painting & Electrical Excellence"
-          description="Real reviews and ratings from our valued clients across Jubilee Hills, Banjara Hills, Gachibowli, and Hyderabad."
+          title="Reviews from Our Hyderabad Clients"
+          description="Real ratings and feedback from showroom owners, corporate spaces, and interior design partners across Hyderabad."
           dark
         />
 
@@ -171,10 +206,15 @@ export default function Testimonials() {
                   <span className="text-white font-bold text-sm md:text-base font-[family-name:var(--font-playfair)]">
                     Find Us on Google Maps
                   </span>
+                  {isLiveGoogle && (
+                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                      ● Live Sync
+                    </span>
+                  )}
                 </div>
                 <p className="text-xs text-white/60 flex items-center gap-1.5 mt-0.5 font-[family-name:var(--font-dm-sans)]">
                   <MapPin className="w-3.5 h-3.5 text-[var(--color-gold)]" />
-                  False Ceiling, Painting & Electrical Installation Hyderabad (near JK Point, Borabanda)
+                  False Ceiling, Painting &amp; Electrical Installation Hyderabad (near JK Point, Borabanda)
                 </p>
               </div>
             </div>
@@ -204,10 +244,11 @@ export default function Testimonials() {
                     className="flex-[0_0_100%] min-w-0 px-4"
                   >
                     <div className="relative bg-[#0E1A2E]/60 border border-white/10 rounded-2xl p-6 md:p-10 text-center shadow-lg">
-                      {/* Newest review tag if index 0 */}
+                      {/* Newest review tag strictly on index 0 */}
                       {idx === 0 && (
-                        <div className="absolute top-4 right-4 bg-[var(--color-gold)] text-[var(--color-navy)] px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-sm">
-                          ⭐ Latest Review
+                        <div className="absolute top-4 right-4 bg-[var(--color-gold)] text-[var(--color-navy)] px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-sm flex items-center gap-1">
+                          <span>⭐</span>
+                          <span>Latest Review ({testimonial.date})</span>
                         </div>
                       )}
 
@@ -247,17 +288,17 @@ export default function Testimonials() {
                       {/* Client Info */}
                       <div className="flex items-center justify-center gap-3">
                         <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[var(--color-gold)]/40 bg-[var(--color-gold)]/20 shrink-0 flex items-center justify-center font-bold text-white text-sm">
-                          {!imgErrors[testimonial.id] ? (
+                          {testimonial.clientImage && !imgErrors[testimonial.id] ? (
                             <Image
                               src={testimonial.clientImage}
-                              alt={testimonial.clientName}
+                              alt={`${testimonial.clientName}, RA Contractor client`}
                               width={48}
                               height={48}
                               className="object-cover w-full h-full"
                               onError={() => setImgErrors((prev) => ({ ...prev, [testimonial.id]: true }))}
                             />
                           ) : (
-                            <span>
+                            <span className="text-[var(--color-gold)] font-bold text-sm tracking-wider">
                               {testimonial.clientName
                                 .split(" ")
                                 .filter(Boolean)
@@ -288,7 +329,7 @@ export default function Testimonials() {
             <div className="flex items-center justify-center gap-6 mt-8">
               <button
                 onClick={scrollPrev}
-                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-[var(--color-gold)] hover:border-[var(--color-gold)]/40 transition-colors"
+                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-[var(--color-gold)] hover:border-[var(--color-gold)]/40 transition-colors cursor-pointer"
                 aria-label="Previous testimonial"
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -300,7 +341,7 @@ export default function Testimonials() {
                   <button
                     key={i}
                     onClick={() => emblaApi?.scrollTo(i)}
-                    className={`h-1.5 rounded-full transition-all shrink-0 ${
+                    className={`h-1.5 rounded-full transition-all shrink-0 cursor-pointer ${
                       selectedIndex === i
                         ? "w-8 bg-[var(--color-gold)]"
                         : "w-1.5 bg-white/20 hover:bg-white/40"
@@ -312,7 +353,7 @@ export default function Testimonials() {
 
               <button
                 onClick={scrollNext}
-                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-[var(--color-gold)] hover:border-[var(--color-gold)]/40 transition-colors"
+                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-[var(--color-gold)] hover:border-[var(--color-gold)]/40 transition-colors cursor-pointer"
                 aria-label="Next testimonial"
               >
                 <ChevronRight className="w-4 h-4" />

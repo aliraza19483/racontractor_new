@@ -11,73 +11,51 @@ import CategoryDetailModal from "@/components/common/CategoryDetailModal";
 const projects = [
   {
     id: "1",
-    title: "The Emerald Residence Turnkey",
-    slug: "emerald-residence",
-    category: "residential",
+    title: "MoldTech Technologies",
+    slug: "moldtech-technologies",
+    category: "commercial",
     style: "turnkey",
-    image: "/images/portfolio/project-1.jpg",
-    location: "Jubilee Hills, Hyderabad",
-    area: "approx. 2,800 sq ft",
+    image: "/images/portfolio/moldtech-technologies.jpg",
+    location: "HITEC City, Hyderabad",
+    area: "approx. 8,500 sq ft",
   },
   {
     id: "2",
-    title: "Skyline Corporate Office Fit-out",
-    slug: "skyline-corporate",
+    title: "Moldtech Packaging Pvt Ltd",
+    slug: "moldtech-packaging",
     category: "commercial",
-    style: "turnkey",
-    image: "/images/portfolio/project-2.jpg",
-    location: "Gachibowli, Hyderabad",
-    area: "approx. 4,200 sq ft",
+    style: "civil",
+    image: "/images/portfolio/moldtech-packaging.jpg",
+    location: "Cherlapally, Hyderabad",
+    area: "approx. 12,000 sq ft",
   },
   {
     id: "3",
-    title: "Serene Luxury Villa Build",
-    slug: "serene-villa",
-    category: "residential",
-    style: "civil",
-    image: "/images/portfolio/project-3.jpg",
+    title: "Prithuvi Toyota Showroom",
+    slug: "prithuvi-toyota-showroom",
+    category: "commercial",
+    style: "luxury",
+    image: "/images/portfolio/prithvi-toyota-showroom.jpg",
     location: "Kondapur, Hyderabad",
-    area: "approx. 3,500 sq ft",
+    area: "approx. 15,000 sq ft",
   },
   {
     id: "4",
-    title: "Artisan Cafe Fit-out",
-    slug: "artisan-cafe",
-    category: "commercial",
-    style: "luxury",
-    image: "/images/portfolio/project-4.jpg",
-    location: "Banjara Hills, Hyderabad",
-    area: "approx. 1,800 sq ft",
-  },
-  {
-    id: "5",
-    title: "The Ivory Penthouse Execution",
-    slug: "ivory-penthouse",
-    category: "residential",
-    style: "luxury",
-    image: "/images/portfolio/project-5.jpg",
-    location: "Madhapur, Hyderabad",
-    area: "approx. 5,000 sq ft",
-  },
-  {
-    id: "6",
-    title: "Bloom Wellness Spa Turnkey",
-    slug: "bloom-wellness",
+    title: "Deloitte, Delhi",
+    slug: "deloitte-delhi",
     category: "commercial",
     style: "turnkey",
-    image: "/images/portfolio/project-6.jpg",
-    location: "Kukatpally, Hyderabad",
-    area: "approx. 3,200 sq ft",
+    image: "/images/portfolio/deloitte-delhi.jpg",
+    location: "Barakhamba Rd, New Delhi",
+    area: "approx. 18,500 sq ft",
   },
 ];
 
 const filterTabs = [
   { label: "All Projects", value: "all" },
-  { label: "Turnkey", value: "turnkey" },
-  { label: "Civil Build", value: "civil" },
-  { label: "Luxury Interiors", value: "luxury" },
-  { label: "Residential", value: "residential" },
-  { label: "Commercial", value: "commercial" },
+  { label: "Turnkey Fit-out", value: "turnkey" },
+  { label: "Civil & Industrial", value: "civil" },
+  { label: "Commercial Showroom", value: "luxury" },
 ];
 
 export default function FeaturedProjects() {
@@ -92,19 +70,16 @@ export default function FeaturedProjects() {
 
   const filteredProjects = projects.filter((p) => {
     if (activeTab === "all") return true;
-    if (activeTab === "residential" || activeTab === "commercial") {
-      return p.category === activeTab;
-    }
     return p.style === activeTab;
   });
 
   return (
-    <section className="section section-light" id="projects">
+    <section className="section section-light scroll-mt-28" id="projects">
       <div className="container-luxury">
         <SectionHeading
           eyebrow="Our Execution Portfolio"
-          title="Turnkey Projects Crafted to Perfection"
-          description="Explore our hallmark residential and commercial turnkey projects executed across Hyderabad."
+          title="Our Landmark Turnkey & Commercial Projects"
+          description="Explore our hallmark corporate fit-outs, industrial facilities, and premium commercial showrooms delivered across Hyderabad and Delhi."
         />
 
         {/* Filter Tabs */}
@@ -127,7 +102,7 @@ export default function FeaturedProjects() {
         {/* Projects Grid */}
         <div
           ref={ref}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-5xl mx-auto"
         >
           {filteredProjects.map((project, i) => (
             <motion.div
@@ -150,24 +125,25 @@ export default function FeaturedProjects() {
                     image: project.image,
                   })
                 }
-                className="group block cursor-pointer"
+                className="group block cursor-pointer bg-white rounded-2xl p-4 shadow-sm hover:shadow-xl transition-all duration-300 border border-black/5"
               >
                 {/* Image */}
-                <div className="relative aspect-[4/3] overflow-hidden rounded-lg mb-4">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-xl mb-4 bg-gray-100">
                   <Image
                     src={project.image}
-                    alt={`${project.title} - Turnkey execution project`}
+                    alt={`${project.title}, ${project.style} project in ${project.location}`}
                     fill
-                    className="object-cover transition-transform group-hover:scale-105"
-                    style={{ transitionDuration: "var(--duration-slow)" }}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
 
                   {/* Overlay on hover */}
-                  <div className="absolute inset-0 bg-[var(--color-navy)]/0 group-hover:bg-[var(--color-navy)]/40 transition-colors flex items-center justify-center"
+                  <div
+                    className="absolute inset-0 bg-[var(--color-navy)]/0 group-hover:bg-[var(--color-navy)]/40 transition-colors flex items-center justify-center"
                     style={{ transitionDuration: "var(--duration-normal)" }}
                   >
-                    <div className="w-12 h-12 rounded-full bg-[var(--color-gold)] flex items-center justify-center opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all shadow-lg"
+                    <div
+                      className="w-12 h-12 rounded-full bg-[var(--color-gold)] flex items-center justify-center opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all shadow-lg"
                       style={{ transitionDuration: "var(--duration-normal)" }}
                     >
                       <ArrowUpRight className="w-5 h-5 text-[var(--color-navy)] stroke-[2.5]" />
@@ -176,25 +152,23 @@ export default function FeaturedProjects() {
 
                   {/* Category badge */}
                   <div className="absolute top-3 left-3">
-                    <span className="px-3 py-1 text-[10px] font-semibold uppercase tracking-wider bg-white/90 text-[var(--color-navy)] rounded-full backdrop-blur-sm font-[family-name:var(--font-dm-sans)] shadow-sm">
-                      {project.category}
+                    <span className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-[#0A1628]/90 text-[var(--color-gold-light)] rounded-full backdrop-blur-md font-[family-name:var(--font-dm-sans)] shadow-sm border border-white/10">
+                      Commercial Turnkey
                     </span>
                   </div>
                 </div>
 
                 {/* Info */}
-                <div>
-                  <h3 className="text-lg font-semibold text-[var(--color-navy)] group-hover:text-[var(--color-gold-dark)] transition-colors font-[family-name:var(--font-playfair)]">
-                    {project.title}
-                  </h3>
-                  <div className="flex items-center gap-3 mt-1">
-                    <span className="text-xs text-[var(--color-gray-medium)] font-[family-name:var(--font-dm-sans)]">
-                      {project.location}
-                    </span>
+                <div className="px-1">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <h3 className="text-xl font-bold text-[var(--color-navy)] group-hover:text-[var(--color-gold-dark)] transition-colors font-[family-name:var(--font-playfair)]">
+                      {project.title}
+                    </h3>
+                  </div>
+                  <div className="flex items-center gap-2.5 text-xs text-[var(--color-gray-medium)] font-[family-name:var(--font-dm-sans)]">
+                    <span className="font-medium text-gray-600">{project.location}</span>
                     <span className="w-1 h-1 rounded-full bg-[var(--color-gold)]" />
-                    <span className="text-xs text-[var(--color-gray-medium)] font-[family-name:var(--font-dm-sans)]">
-                      {project.area}
-                    </span>
+                    <span className="text-[var(--color-gold-dark)] font-semibold">{project.area}</span>
                   </div>
                 </div>
               </div>
@@ -204,12 +178,12 @@ export default function FeaturedProjects() {
 
         {/* View All */}
         <div className="text-center mt-12">
-          <button
-            onClick={() => setActiveTab("all")}
+          <Link
+            href="/projects"
             className="btn-luxury btn-outline-dark"
           >
             View All Projects
-          </button>
+          </Link>
         </div>
       </div>
 

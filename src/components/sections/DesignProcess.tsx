@@ -39,7 +39,7 @@ export default function DesignProcess() {
       <div className="container-luxury">
         <SectionHeading
           eyebrow="Our Process"
-          title="From Vision to Reality"
+          title="Our Turnkey Construction Process"
           description="A refined 10-step process that ensures every detail is considered, every decision is deliberate, and every space is extraordinary."
         />
 

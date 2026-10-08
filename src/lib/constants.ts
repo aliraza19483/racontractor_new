@@ -33,12 +33,17 @@ export const navItems: NavItem[] = [
     label: "Services",
     href: "/#categories",
     children: [
-      { label: "Turnkey Categories", href: "/#categories" },
+      { label: "Turnkey Construction", href: "/services/turnkey-construction-hyderabad" },
+      { label: "Civil Contractors", href: "/services/civil-contractors-hyderabad" },
+      { label: "Luxury Interiors", href: "/services/luxury-interior-design-hyderabad" },
+      { label: "Commercial Interiors", href: "/services/commercial-interior-contractors-hyderabad" },
+      { label: "All Services", href: "/services" },
       { label: "Design & Build Process", href: "/#process" },
       { label: "Why Choose Us", href: "/#why-choose-us" },
     ],
   },
-  { label: "Portfolio", href: "/#portfolio" },
+  { label: "Projects", href: "/projects" },
+  { label: "Guides", href: "/blog" },
   { label: "Reviews", href: "/#testimonials" },
   { label: "Process", href: "/#process" },
   { label: "Contact", href: "/#contact" },
@@ -165,7 +170,6 @@ export const whyChooseUs = [
     icon: "Monitor",
   },
   {
-    step: 6,
     title: "Strict Timeline Management",
     description:
       "Structured contractor milestones and proactive planning ensuring your project is delivered right on schedule.",
@@ -195,20 +199,14 @@ export const whyChooseUs = [
 // Interior Categories
 // ============================================================
 export const interiorCategories = [
-  { title: "Living Room", slug: "living-room", image: "/images/services/living-room.jpg" },
-  { title: "Bedroom", slug: "bedroom", image: "/images/services/bedroom.jpg" },
-  { title: "Kitchen", slug: "modular-kitchen", image: "/images/services/kitchen.jpg" },
-  { title: "Wardrobe", slug: "wardrobes", image: "/images/services/wardrobe.jpg" },
-  { title: "Bathroom", slug: "luxury-bathroom", image: "/images/services/bathroom.jpg" },
-  { title: "Balcony", slug: "balcony", image: "/images/services/balcony.jpg" },
-  { title: "Dining Room", slug: "dining-room", image: "/images/services/dining.jpg" },
-  { title: "Home Office", slug: "home-office", image: "/images/services/office.jpg" },
-  { title: "Cafe", slug: "cafe-interior", image: "/images/services/cafe.jpg" },
-  { title: "Restaurant", slug: "restaurants", image: "/images/services/restaurant.jpg" },
-  { title: "Hotel", slug: "hotels", image: "/images/services/hotel.jpg" },
-  { title: "Clinic", slug: "clinics", image: "/images/services/clinic.jpg" },
-  { title: "Salon", slug: "salons", image: "/images/services/salon.jpg" },
-  { title: "Retail", slug: "retail-shops", image: "/images/services/retail.jpg" },
+  { title: "False Ceiling & Lighting", slug: "false-ceiling", image: "/images/services/false-ceiling/ceiling-1.jpg" },
+  { title: "Painting & Wall Finishes", slug: "painting", image: "/images/services/painting/painting-1.jpg" },
+  { title: "Electrical & Concealed Wiring", slug: "electrical", image: "/images/services/electrical/electrical-1.jpg" },
+  { title: "Carpentry & Custom Wardrobes", slug: "carpentry-wardrobes", image: "/images/categories/carpentry.jpg" },
+  { title: "Modular Kitchen Design", slug: "modular-kitchen", image: "/images/services/kitchen/kitchen-1.jpg" },
+  { title: "Living, Bedroom & Dining", slug: "home-interiors", image: "/images/services/living/living-1.jpg" },
+  { title: "Bathroom & Balcony", slug: "bathroom-balcony", image: "/images/categories/bathroom.jpg" },
+  { title: "Commercial & Showroom Fit-outs", slug: "commercial-fitout", image: "/images/services/commercial/commercial-1.jpg" },
 ];
 
 // ============================================================

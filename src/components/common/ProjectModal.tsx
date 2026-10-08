@@ -53,7 +53,7 @@ export default function ProjectModal({
           "/images/portfolio/project-1.jpg",
           "/images/portfolio/project-2.jpg",
           "/images/portfolio/project-4.jpg",
-          "/images/portfolio/project-6.jpg"
+          "/images/portfolio/project-5.jpg"
         ])
       ].slice(0, 4);
 
@@ -163,7 +163,7 @@ export default function ProjectModal({
                   >
                     <Image
                       src={img}
-                      alt={`Gallery view ${i + 1}`}
+                      alt={`${project.title} gallery photo ${i + 1}`}
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 64px, 80px"

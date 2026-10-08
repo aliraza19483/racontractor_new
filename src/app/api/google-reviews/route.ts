@@ -9,80 +9,88 @@ export interface GoogleReviewItem {
   rating: number;
   review: string;
   date: string;
+  timestamp?: number;
   verifiedGoogle: boolean;
 }
 
+// Ordered strictly with the freshest 5-star reviews first
 const fallbackTestimonials: GoogleReviewItem[] = [
-  {
-    id: "hyd-1",
-    clientName: "Home Theatre Crafts",
-    clientImage: "https://lh3.googleusercontent.com/a/ACg8ocL-real-avatar-htc",
-    projectType: "False Ceiling, Painting & Showroom Carpentry",
-    location: "Borabanda, Hyderabad",
-    rating: 5,
-    review:
-      "Excellent and timely service by Farhan. We used their services for False ceiling, Painting, and carpentry in our Home Theater Crafts showroom. We are very happy with the quality of work and highly recommended.",
-    date: "1 year ago",
-    verifiedGoogle: true,
-  },
-  {
-    id: "hyd-2",
-    clientName: "Mohammed Adil",
-    clientImage: "https://lh3.googleusercontent.com/a/ACg8ocL-real-avatar-ma",
-    projectType: "Gypsum False Ceiling & Concealed Wiring",
-    location: "Hyderabad",
-    rating: 5,
-    review:
-      "Excellent work very good person I thank you Mr Ansari For your Support nd corporate u will definitely recommend to my friends nd family 👍",
-    date: "10 months ago",
-    verifiedGoogle: true,
-  },
-  {
-    id: "hyd-3",
-    clientName: "Meraj Sher",
-    clientImage: "https://lh3.googleusercontent.com/a/ACg8ocL-real-avatar-ms",
-    projectType: "Complete Electrical & Ceiling Work",
-    location: "Hyderabad",
-    rating: 5,
-    review:
-      "Experience person very good work I get .At the starting the work he said me you won't complain me about anything I will will be taking responsibility. Absolutely he did that what he say.Thank you",
-    date: "9 months ago",
-    verifiedGoogle: true,
-  },
-  {
-    id: "hyd-4",
-    clientName: "Drx Mansoor Ansari (Interior Des)",
-    clientImage: "https://lh3.googleusercontent.com/grass-cs/ACvplmMSyW5T0JVagsKpXbjlLZ0jyBIYufKwfxPrVZzCd6xNpVpceJ3SRb2mQCTABjjDW9FIJMKuUpbdqfi0AO-d9wu0Lr4xP5QiQqP4rmfjvK5btP2tln2EhJHHthBFRwjmVes5H-CVoN6qrtE=k-no",
-    projectType: "Turnkey False Ceiling & Lighting",
-    location: "Hyderabad",
-    rating: 5,
-    review:
-      "Highly professional and outstanding work Work complete 💯 in given time space …",
-    date: "1 year ago",
-    verifiedGoogle: true,
-  },
   {
     id: "hyd-5",
     clientName: "Shinde Sidduu",
-    clientImage: "https://lh3.googleusercontent.com/a/ACg8ocL-real-avatar-ss",
+    clientImage: "",
     projectType: "False Ceiling & Painting Work",
     location: "Hyderabad",
     rating: 5,
     review:
       "Top-notch execution for false ceiling, painting and electrical installation in Hyderabad. Very neat and punctual work!",
     date: "3 weeks ago",
+    timestamp: Date.now() - 21 * 24 * 60 * 60 * 1000,
+    verifiedGoogle: true,
+  },
+  {
+    id: "hyd-3",
+    clientName: "Meraj Sher",
+    clientImage: "",
+    projectType: "Complete Electrical & Ceiling Work",
+    location: "Hyderabad",
+    rating: 5,
+    review:
+      "Experience person very good work I get .At the starting the work he said me you won't complain me about anything I will will be taking responsibility. Absolutely he did that what he say.Thank you",
+    date: "9 months ago",
+    timestamp: Date.now() - 270 * 24 * 60 * 60 * 1000,
+    verifiedGoogle: true,
+  },
+  {
+    id: "hyd-2",
+    clientName: "Mohammed Adil",
+    clientImage: "",
+    projectType: "Gypsum False Ceiling & Concealed Wiring",
+    location: "Hyderabad",
+    rating: 5,
+    review:
+      "Excellent work very good person I thank you Mr Ansari For your Support nd corporate u will definitely recommend to my friends nd family 👍",
+    date: "10 months ago",
+    timestamp: Date.now() - 300 * 24 * 60 * 60 * 1000,
+    verifiedGoogle: true,
+  },
+  {
+    id: "hyd-1",
+    clientName: "Home Theatre Crafts",
+    clientImage: "",
+    projectType: "False Ceiling, Painting & Showroom Carpentry",
+    location: "Borabanda, Hyderabad",
+    rating: 5,
+    review:
+      "Excellent and timely service by Farhan. We used their services for False ceiling, Painting, and carpentry in our Home Theater Crafts showroom. We are very happy with the quality of work and highly recommended.",
+    date: "1 year ago",
+    timestamp: Date.now() - 365 * 24 * 60 * 60 * 1000,
+    verifiedGoogle: true,
+  },
+  {
+    id: "hyd-4",
+    clientName: "Drx Mansoor Ansari (Interior Des)",
+    clientImage: "",
+    projectType: "Turnkey False Ceiling & Lighting",
+    location: "Hyderabad",
+    rating: 5,
+    review:
+      "Highly professional and outstanding work Work complete 💯 in given time space …",
+    date: "1 year ago",
+    timestamp: Date.now() - 370 * 24 * 60 * 60 * 1000,
     verifiedGoogle: true,
   },
   {
     id: "hyd-6",
     clientName: "Riyaz Ahmad",
-    clientImage: "https://lh3.googleusercontent.com/a/ACg8ocL-real-avatar-ra",
+    clientImage: "",
     projectType: "Interior Painting & Grid Ceiling",
     location: "Hyderabad",
     rating: 5,
     review:
       "Great quality false ceiling design and interior painting work. Professional staff and fair pricing.",
     date: "1 year ago",
+    timestamp: Date.now() - 380 * 24 * 60 * 60 * 1000,
     verifiedGoogle: true,
   },
 ];
@@ -99,52 +107,111 @@ export async function GET() {
     });
   }
 
+  // 1. Try Places API (New) first (Recommended by Google)
   try {
-    const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,rating,reviews,user_ratings_total&key=${apiKey}`;
-    const res = await fetch(url, {
-      next: { revalidate: 3600 }, // Cache live reviews for 1 hour
+    const newApiUrl = `https://places.googleapis.com/v1/places/${placeId}`;
+    const newRes = await fetch(newApiUrl, {
+      headers: {
+        "Content-Type": "application/json",
+        "X-Goog-Api-Key": apiKey,
+        "X-Goog-FieldMask": "id,displayName,rating,userRatingCount,reviews",
+      },
+      next: { revalidate: 1800 }, // Cache for 30 minutes
     });
 
-    if (!res.ok) {
-      throw new Error(`Google API error: ${res.statusText}`);
+    if (newRes.ok) {
+      const newData = await newRes.json();
+      if (newData.reviews && Array.isArray(newData.reviews) && newData.reviews.length > 0) {
+        // Filter: Only good reviews (rating >= 4) with actual text
+        const goodReviews = newData.reviews.filter(
+          (r: any) => (r.rating || 5) >= 4 && (r.text?.text || r.originalText?.text || "").trim().length > 10
+        );
+
+        // Sort: Newest publish time first
+        goodReviews.sort((a: any, b: any) => {
+          const timeA = a.publishTime ? new Date(a.publishTime).getTime() : 0;
+          const timeB = b.publishTime ? new Date(b.publishTime).getTime() : 0;
+          return timeB - timeA;
+        });
+
+        const mappedReviews: GoogleReviewItem[] = goodReviews.map((r: any, idx: number) => ({
+          id: `google-new-${idx}`,
+          clientName: r.authorAttribution?.displayName || "Verified Client",
+          clientImage: r.authorAttribution?.photoUri || "",
+          projectType: "Verified Google Customer",
+          location: "Hyderabad",
+          rating: r.rating || 5,
+          review: r.text?.text || r.originalText?.text || "",
+          date: r.relativePublishTimeDescription || "Recent Google Review",
+          timestamp: r.publishTime ? new Date(r.publishTime).getTime() : Date.now() - idx * 100000,
+          verifiedGoogle: true,
+        }));
+
+        if (mappedReviews.length > 0) {
+          return NextResponse.json({
+            reviews: mappedReviews,
+            isLive: true,
+            userRatingsTotal: newData.userRatingCount,
+            overallRating: newData.rating,
+            source: "places_api_new",
+          });
+        }
+      }
     }
-
-    const data = await res.json();
-
-    if (data.status !== "OK" || !data.result?.reviews) {
-      console.warn("Google Places API warning:", data.error_message || data.status);
-      return NextResponse.json({
-        reviews: fallbackTestimonials,
-        isLive: false,
-        message: data.error_message || "No Google reviews found. Showing local verified Google reviews.",
-      });
-    }
-
-    // Map Google API reviews format to UI format
-    const googleReviews: GoogleReviewItem[] = data.result.reviews.map((r: any, idx: number) => ({
-      id: `google-${idx}`,
-      clientName: r.author_name,
-      clientImage: r.profile_photo_url || `/images/testimonials/client-${(idx % 5) + 1}.jpg`,
-      projectType: "Verified Google Customer",
-      location: "Hyderabad",
-      rating: r.rating || 5,
-      review: r.text,
-      date: r.relative_time_description || "Recent Google Review",
-      verifiedGoogle: true,
-    }));
-
-    return NextResponse.json({
-      reviews: googleReviews,
-      isLive: true,
-      userRatingsTotal: data.result.user_ratings_total,
-      overallRating: data.result.rating,
-    });
-  } catch (error: any) {
-    console.error("Error fetching live Google reviews:", error);
-    return NextResponse.json({
-      reviews: fallbackTestimonials,
-      isLive: false,
-      error: error.message,
-    });
+  } catch (err) {
+    console.warn("Places API (New) attempt:", err);
   }
+
+  // 2. Fallback to Legacy Places API
+  try {
+    const legacyUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,rating,reviews,user_ratings_total&reviews_sort=newest&key=${apiKey}`;
+    const legacyRes = await fetch(legacyUrl, {
+      next: { revalidate: 1800 },
+    });
+
+    if (legacyRes.ok) {
+      const legacyData = await legacyRes.json();
+      if (legacyData.status === "OK" && legacyData.result?.reviews) {
+        // Filter: Only good reviews (rating >= 4) with actual text
+        const goodReviews = legacyData.result.reviews.filter(
+          (r: any) => (r.rating || 5) >= 4 && (r.text || "").trim().length > 10
+        );
+
+        // Sort: Newest first (time descending)
+        goodReviews.sort((a: any, b: any) => (b.time || 0) - (a.time || 0));
+
+        const mappedReviews: GoogleReviewItem[] = goodReviews.map((r: any, idx: number) => ({
+          id: `google-legacy-${idx}`,
+          clientName: r.author_name || "Verified Client",
+          clientImage: r.profile_photo_url || "",
+          projectType: "Verified Google Customer",
+          location: "Hyderabad",
+          rating: r.rating || 5,
+          review: r.text,
+          date: r.relative_time_description || "Recent Google Review",
+          timestamp: r.time ? r.time * 1000 : Date.now() - idx * 100000,
+          verifiedGoogle: true,
+        }));
+
+        if (mappedReviews.length > 0) {
+          return NextResponse.json({
+            reviews: mappedReviews,
+            isLive: true,
+            userRatingsTotal: legacyData.result.user_ratings_total,
+            overallRating: legacyData.result.rating,
+            source: "places_api_legacy",
+          });
+        }
+      }
+    }
+  } catch (err) {
+    console.warn("Places API (Legacy) attempt:", err);
+  }
+
+  // 3. Graceful fallback to verified reviews sorted newest-first
+  return NextResponse.json({
+    reviews: fallbackTestimonials,
+    isLive: false,
+    message: "Google Places API key is configured. Awaiting active propagation or fallback active.",
+  });
 }

@@ -1,3 +1,4 @@
+import { services } from "@/lib/services";
 import type { Metadata } from "next";
 import { playfair, dmSans, cormorant } from "@/lib/fonts";
 import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
@@ -7,53 +8,32 @@ import SplashScreen from "@/components/common/SplashScreen";
 import FloatingActions from "@/components/common/FloatingActions";
 import "./globals.css";
 
+const TITLE = "Turnkey Contractor in Hyderabad | Civil & Interior Contractors – RA Contractor";
+const DESC =
+  "RA Contractor is a Hyderabad-based turnkey civil and interior contractor offering residential construction, luxury interiors, commercial fit-outs and complete project execution.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://racontractor.in"),
   title: {
-    default: "RA CONTRACTOR — Luxury Civil Construction, Turnkey & Interior Execution",
-    template: "%s | RA CONTRACTOR",
+    default: TITLE,
+    template: "%s | RA Contractor",
   },
-  description:
-    "Creating timeless structures and luxury interiors for modern living. RA CONTRACTOR is a top-tier construction and interior execution contractor specializing in luxury residential, commercial, and turnkey projects.",
-  keywords: [
-    "RA Contractor",
-    "civil contractor",
-    "turnkey contractor",
-    "building construction",
-    "interior execution",
-    "luxury interior",
-    "residential construction",
-    "commercial contractor",
-    "architectural execution",
-    "modular kitchen",
-    "living room design",
-    "turnkey fit-out",
-  ],
-  authors: [{ name: "RA CONTRACTOR" }],
-  creator: "RA CONTRACTOR",
+  description: DESC,
+  alternates: { canonical: "/" },
+  authors: [{ name: "RA Contractor" }],
+  creator: "RA Contractor",
   openGraph: {
     type: "website",
     locale: "en_IN",
     url: "https://racontractor.in",
-    siteName: "RA CONTRACTOR",
-    title: "RA CONTRACTOR — Luxury Civil Construction, Turnkey & Interior Execution",
-    description:
-      "Creating timeless structures and interiors for modern living. Premium civil construction, turnkey contractor services, and bespoke interior execution.",
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "RA CONTRACTOR — Turnkey Construction & Interior Execution",
-      },
-    ],
+    siteName: "RA Contractor",
+    title: TITLE,
+    description: DESC,
   },
   twitter: {
     card: "summary_large_image",
-    title: "RA CONTRACTOR — Turnkey Construction & Interior Execution",
-    description:
-      "Creating timeless structures and interiors for modern living. Premium civil construction and interior execution.",
-    images: ["/images/og-image.jpg"],
+    title: TITLE,
+    description: DESC,
   },
   robots: {
     index: true,
@@ -68,16 +48,29 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
+const jsonLdWebsite = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://racontractor.in/#website",
+  url: "https://racontractor.in",
+  name: "RA Contractor",
+  publisher: { "@id": "https://racontractor.in/#organization" },
+  inLanguage: "en-IN",
+};
+
+const jsonLdOrganization = {
   "@context": "https://schema.org",
   "@type": "GeneralContractor",
   name: "RA CONTRACTOR",
-  image: "https://racontractor.in/images/og-image.jpg",
+  alternateName: "RA Contractor",
+  image: "https://racontractor.in/opengraph-image",
   "@id": "https://racontractor.in/#organization",
   url: "https://racontractor.in",
   telephone: "+91 83748 97487",
   email: "racontractor35@gmail.com",
-  priceRange: "₹₹",
+  priceRange: "₹₹₹",
+  description:
+    "Hyderabad-based turnkey civil and interior contractor: residential construction, luxury interiors, commercial fit-outs and complete project execution.",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Allapur Rd, near JK Point, Swaraj Nagar, Borabanda",
@@ -91,24 +84,28 @@ const jsonLd = {
     latitude: 17.4529,
     longitude: 78.4062,
   },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Construction & Interior Services",
+    itemListElement: services.map((sv) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name: sv.h1, url: `https://racontractor.in/services/${sv.slug}` },
+    })),
+  },
   hasMap: "https://maps.app.goo.gl/Fr5AXyx2DzKuqXZN8",
   areaServed: [
-    {
-      "@type": "City",
-      name: "Hyderabad",
-    },
-    {
-      "@type": "AdministrativeArea",
-      name: "Telangana",
-    },
+    { "@type": "AdministrativeArea", name: "Financial District, Hyderabad" },
+    { "@type": "AdministrativeArea", name: "HITEC City, Hyderabad" },
+    { "@type": "AdministrativeArea", name: "Gachibowli, Hyderabad" },
+    { "@type": "AdministrativeArea", name: "Madhapur, Hyderabad" },
+    { "@type": "AdministrativeArea", name: "Kondapur, Hyderabad" },
+    { "@type": "AdministrativeArea", name: "Kokapet, Hyderabad" },
+    { "@type": "AdministrativeArea", name: "Jubilee Hills, Hyderabad" },
+    { "@type": "AdministrativeArea", name: "Banjara Hills, Hyderabad" },
+    { "@type": "AdministrativeArea", name: "Nanakramguda, Hyderabad" },
+    { "@type": "AdministrativeArea", name: "Raidurg, Hyderabad" },
+    { "@type": "City", name: "Hyderabad" },
   ],
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5.0",
-    reviewCount: "6",
-    bestRating: "5",
-    worstRating: "1",
-  },
   sameAs: [
     "https://maps.app.goo.gl/Fr5AXyx2DzKuqXZN8",
     "https://instagram.com/racontractor",
@@ -126,13 +123,17 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="en-IN"
       className={`${playfair.variable} ${dmSans.variable} ${cormorant.variable}`}
     >
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebsite) }}
         />
       </head>
       <body>

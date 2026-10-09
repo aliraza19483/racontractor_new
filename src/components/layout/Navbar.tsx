@@ -53,8 +53,8 @@ export default function Navbar() {
       >
         <div className="container-luxury flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 z-10">
-            <span className="text-2xl font-bold tracking-tight text-white font-[family-name:var(--font-playfair)]">
+          <Link href="/" className="flex items-center gap-2 z-10 group">
+            <span className="text-2xl font-bold tracking-tight text-white font-[family-name:var(--font-playfair)] group-hover:text-[var(--color-gold-light)] transition-colors">
               RA
             </span>
             <span className="hidden sm:inline-block h-6 w-px bg-[var(--color-gold)] opacity-60" />
@@ -64,7 +64,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-7 shrink-0">
             {navItems.map((item) => (
               <div
                 key={item.label}
@@ -76,7 +76,7 @@ export default function Navbar() {
               >
                 <Link
                   href={item.href}
-                  className="text-sm font-[family-name:var(--font-dm-sans)] font-medium text-white/90 hover:text-[var(--color-gold)] transition-colors flex items-center gap-1.5 py-1"
+                  className="text-sm font-[family-name:var(--font-dm-sans)] font-medium text-white/90 hover:text-[var(--color-gold)] transition-colors flex items-center gap-1.5 py-1 whitespace-nowrap"
                   style={{ transitionDuration: "var(--duration-fast)" }}
                 >
                   {item.label}

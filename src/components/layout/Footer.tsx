@@ -60,8 +60,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-block mb-6">
-              <span className="text-3xl font-bold tracking-tight font-[family-name:var(--font-playfair)]">
+            <Link href="/" className="inline-block mb-6 group">
+              <span className="text-3xl font-bold tracking-tight font-[family-name:var(--font-playfair)] block leading-none group-hover:text-[var(--color-gold-light)] transition-colors">
                 RA
               </span>
               <span className="block text-xs font-semibold uppercase tracking-[0.25em] text-[var(--color-gold)] mt-1 font-[family-name:var(--font-dm-sans)]">

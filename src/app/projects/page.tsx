@@ -81,6 +81,27 @@ export default function ProjectsIndex() {
               </Link>
             ))}
           </div>
+
+          {/* Proof Gallery Callout */}
+          <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-[var(--color-navy)] text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-white/10">
+            <div>
+              <span className="px-3 py-1 rounded-full text-[10px] uppercase font-bold tracking-wider bg-[var(--color-gold)]/20 text-[var(--color-gold-light)] border border-[var(--color-gold)]/30 mb-2 inline-block">
+                Authentic Verification
+              </span>
+              <h3 className="text-xl sm:text-2xl font-bold font-[family-name:var(--font-playfair)]">
+                Want to see raw, unedited on-site photos?
+              </h3>
+              <p className="text-xs sm:text-sm text-white/70 mt-1 max-w-xl font-[family-name:var(--font-dm-sans)]">
+                Browse through 54+ direct site execution photographs of civil framing, false ceilings, MEP rough-ins, and luxury joinery.
+              </p>
+            </div>
+            <Link
+              href="/gallery"
+              className="btn-luxury btn-gold text-xs whitespace-nowrap shrink-0 shadow-lg"
+            >
+              View 54+ Site Proofs →
+            </Link>
+          </div>
         </div>
       </section>
     </>

@@ -176,13 +176,20 @@ export default function FeaturedProjects() {
           ))}
         </div>
 
-        {/* View All */}
-        <div className="text-center mt-12">
+        {/* View All & Real Proof Gallery */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
           <Link
             href="/projects"
             className="btn-luxury btn-outline-dark"
           >
             View All Projects
+          </Link>
+          <Link
+            href="/gallery"
+            className="btn-luxury bg-[var(--color-gold)] text-white hover:bg-[var(--color-gold-dark)] shadow-md flex items-center gap-2"
+          >
+            <span>Real Site Proof (54+ Photos)</span>
+            <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>
       </div>

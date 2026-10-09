@@ -1,5 +1,6 @@
 import Hero from "@/components/sections/Hero";
 import AboutStudio from "@/components/sections/AboutStudio";
+import FeaturedProjects from "@/components/sections/FeaturedProjects";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import InteriorCategories from "@/components/sections/InteriorCategories";
 import DesignProcess from "@/components/sections/DesignProcess";
@@ -13,6 +14,7 @@ export default function Home() {
     <>
       <Hero />
       <AboutStudio />
+      <FeaturedProjects />
       <WhyChooseUs />
       <InteriorCategories />
       <DesignProcess />

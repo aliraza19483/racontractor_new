@@ -43,6 +43,7 @@ export const navItems: NavItem[] = [
     ],
   },
   { label: "Projects", href: "/projects" },
+  { label: "Site Proof", href: "/gallery" },
   { label: "Guides", href: "/blog" },
   { label: "Reviews", href: "/#testimonials" },
   { label: "Process", href: "/#process" },

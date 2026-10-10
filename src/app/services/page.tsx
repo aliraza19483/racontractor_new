@@ -5,7 +5,7 @@ import { services } from "@/lib/services";
 import { serviceMedia } from "@/lib/serviceContent";
 
 export const metadata: Metadata = {
-  title: "Civil & Interior Contractor Services in Hyderabad",
+  title: "Civil and Interior Services in Hyderabad",
   description: "Turnkey construction, civil work, home and commercial interiors, kitchens, ceilings, painting and electrical by RA Contractor in Hyderabad.",
   alternates: { canonical: "/services" },
 };

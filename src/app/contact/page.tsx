@@ -5,7 +5,7 @@ import EnquiryForm from "@/components/contact/EnquiryForm";
 import { siteConfig } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Contact Us: Civil & Interior Contractors in Hyderabad",
+  title: "Contact Us: Interior Contractors Hyderabad",
   description:
     "Call, WhatsApp or send an enquiry to RA Contractor in Borabanda, Hyderabad for civil construction, interiors, false ceilings, painting and electrical work.",
   alternates: { canonical: "/contact" },

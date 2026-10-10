@@ -13,6 +13,23 @@ export interface GoogleReviewItem {
   verifiedGoogle: boolean;
 }
 
+interface PlacesNewReview {
+  rating?: number;
+  text?: { text?: string };
+  originalText?: { text?: string };
+  publishTime?: string;
+  relativePublishTimeDescription?: string;
+  authorAttribution?: { displayName?: string; photoUri?: string };
+}
+interface PlacesLegacyReview {
+  rating?: number;
+  text?: string;
+  time?: number;
+  author_name?: string;
+  profile_photo_url?: string;
+  relative_time_description?: string;
+}
+
 // Ordered strictly with the freshest 5-star reviews first
 const fallbackTestimonials: GoogleReviewItem[] = [
   {
@@ -95,16 +112,22 @@ const fallbackTestimonials: GoogleReviewItem[] = [
   },
 ];
 
+const CACHE_HEADERS = {
+  "Cache-Control": "public, s-maxage=1800, stale-while-revalidate=86400",
+};
+
 export async function GET() {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
   const placeId = process.env.NEXT_PUBLIC_GOOGLE_PLACE_ID || process.env.GOOGLE_PLACE_ID;
 
   if (!apiKey || !placeId) {
-    return NextResponse.json({
-      reviews: fallbackTestimonials,
-      isLive: false,
-      message: "GOOGLE_PLACES_API_KEY or GOOGLE_PLACE_ID not configured in .env. Showing local verified Google reviews.",
-    });
+    return NextResponse.json(
+      {
+        reviews: fallbackTestimonials,
+        isLive: false,
+      },
+      { headers: CACHE_HEADERS }
+    );
   }
 
   // 1. Try Places API (New) first (Recommended by Google)
@@ -124,17 +147,17 @@ export async function GET() {
       if (newData.reviews && Array.isArray(newData.reviews) && newData.reviews.length > 0) {
         // Filter: Only good reviews (rating >= 4) with actual text
         const goodReviews = newData.reviews.filter(
-          (r: any) => (r.rating || 5) >= 4 && (r.text?.text || r.originalText?.text || "").trim().length > 10
+          (r: PlacesNewReview) => (r.rating || 5) >= 4 && (r.text?.text || r.originalText?.text || "").trim().length > 10
         );
 
         // Sort: Newest publish time first
-        goodReviews.sort((a: any, b: any) => {
+        goodReviews.sort((a: PlacesNewReview, b: PlacesNewReview) => {
           const timeA = a.publishTime ? new Date(a.publishTime).getTime() : 0;
           const timeB = b.publishTime ? new Date(b.publishTime).getTime() : 0;
           return timeB - timeA;
         });
 
-        const mappedReviews: GoogleReviewItem[] = goodReviews.map((r: any, idx: number) => ({
+        const mappedReviews: GoogleReviewItem[] = goodReviews.map((r: PlacesNewReview, idx: number) => ({
           id: `google-new-${idx}`,
           clientName: r.authorAttribution?.displayName || "Verified Client",
           clientImage: r.authorAttribution?.photoUri || "",
@@ -148,13 +171,16 @@ export async function GET() {
         }));
 
         if (mappedReviews.length > 0) {
-          return NextResponse.json({
-            reviews: mappedReviews,
-            isLive: true,
-            userRatingsTotal: newData.userRatingCount,
-            overallRating: newData.rating,
-            source: "places_api_new",
-          });
+          return NextResponse.json(
+            {
+              reviews: mappedReviews,
+              isLive: true,
+              userRatingsTotal: newData.userRatingCount,
+              overallRating: newData.rating,
+              source: "places_api_new",
+            },
+            { headers: CACHE_HEADERS }
+          );
         }
       }
     }
@@ -174,13 +200,13 @@ export async function GET() {
       if (legacyData.status === "OK" && legacyData.result?.reviews) {
         // Filter: Only good reviews (rating >= 4) with actual text
         const goodReviews = legacyData.result.reviews.filter(
-          (r: any) => (r.rating || 5) >= 4 && (r.text || "").trim().length > 10
+          (r: PlacesLegacyReview) => (r.rating || 5) >= 4 && (r.text || "").trim().length > 10
         );
 
         // Sort: Newest first (time descending)
-        goodReviews.sort((a: any, b: any) => (b.time || 0) - (a.time || 0));
+        goodReviews.sort((a: PlacesLegacyReview, b: PlacesLegacyReview) => (b.time || 0) - (a.time || 0));
 
-        const mappedReviews: GoogleReviewItem[] = goodReviews.map((r: any, idx: number) => ({
+        const mappedReviews: GoogleReviewItem[] = goodReviews.map((r: PlacesLegacyReview, idx: number) => ({
           id: `google-legacy-${idx}`,
           clientName: r.author_name || "Verified Client",
           clientImage: r.profile_photo_url || "",
@@ -194,13 +220,16 @@ export async function GET() {
         }));
 
         if (mappedReviews.length > 0) {
-          return NextResponse.json({
-            reviews: mappedReviews,
-            isLive: true,
-            userRatingsTotal: legacyData.result.user_ratings_total,
-            overallRating: legacyData.result.rating,
-            source: "places_api_legacy",
-          });
+          return NextResponse.json(
+            {
+              reviews: mappedReviews,
+              isLive: true,
+              userRatingsTotal: legacyData.result.user_ratings_total,
+              overallRating: legacyData.result.rating,
+              source: "places_api_legacy",
+            },
+            { headers: CACHE_HEADERS }
+          );
         }
       }
     }
@@ -209,9 +238,11 @@ export async function GET() {
   }
 
   // 3. Graceful fallback to verified reviews sorted newest-first
-  return NextResponse.json({
-    reviews: fallbackTestimonials,
-    isLive: false,
-    message: "Google Places API key is configured. Awaiting active propagation or fallback active.",
-  });
+  return NextResponse.json(
+    {
+      reviews: fallbackTestimonials,
+      isLive: false,
+    },
+    { headers: CACHE_HEADERS }
+  );
 }

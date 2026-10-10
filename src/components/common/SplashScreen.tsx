@@ -6,34 +6,36 @@ import Image from "next/image";
 
 export default function SplashScreen() {
   const [progress, setProgress] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const shown = sessionStorage.getItem("ra_splash_shown");
-      if (shown) {
-        setIsLoading(false);
-        return;
-      }
-      setIsLoading(true);
+    const isDev = process.env.NODE_ENV === "development";
+    const forceSplash = typeof window !== "undefined" && window.location.search.includes("splash");
+    const shown = typeof window !== "undefined" && sessionStorage.getItem("ra_splash_shown_v2");
+
+    if (shown && !forceSplash && !isDev) {
+      setIsLoading(false);
+      return;
     }
 
     const startTime = Date.now();
-    const duration = 2200; // 2.2 seconds total animation
+    const duration = 2000; // 2.0 seconds animation
 
     const timer = setInterval(() => {
       const elapsed = Date.now() - startTime;
       const nextProgress = Math.min(Math.floor((elapsed / duration) * 100), 100);
       setProgress(nextProgress);
 
-      if (nextProgress === 100) {
+      if (nextProgress >= 100) {
         clearInterval(timer);
-        sessionStorage.setItem("ra_splash_shown", "true");
+        if (typeof window !== "undefined") {
+          sessionStorage.setItem("ra_splash_shown_v2", "true");
+        }
         setTimeout(() => {
           setIsLoading(false);
-        }, 350);
+        }, 300);
       }
-    }, 25);
+    }, 20);
 
     return () => clearInterval(timer);
   }, []);
@@ -53,11 +55,11 @@ export default function SplashScreen() {
           exit={{
             y: "-100%",
             transition: {
-              duration: 0.9,
+              duration: 0.8,
               ease: [0.76, 0, 0.24, 1],
             },
           }}
-          className="fixed inset-0 z-[100] bg-[#08101E] flex flex-col items-center justify-between py-12 px-6 overflow-hidden select-none"
+          className="fixed inset-0 z-[99999] bg-[#08101E] flex flex-col items-center justify-between py-12 px-6 overflow-hidden select-none"
         >
           {/* Subtle architectural noise/glow background */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--color-navy)] to-[#040810] opacity-90 pointer-events-none" />

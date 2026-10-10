@@ -4,10 +4,12 @@ import { playfair, dmSans, cormorant } from "@/lib/fonts";
 import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import SplashScreen from "@/components/common/SplashScreen";
 import FloatingActions from "@/components/common/FloatingActions";
+import CookieConsent from "@/components/common/CookieConsent";
 import "./globals.css";
 
-const TITLE = "Civil Construction & Interior Contractors in Hyderabad | RA Contractor";
+const TITLE = "Civil & Interior Contractors in Hyderabad | RA Contractor";
 const DESC =
   "RA Contractor is a Hyderabad-based civil construction and interior contractor offering turnkey construction, home interiors, renovations and commercial fit-outs.";
 
@@ -144,11 +146,13 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <SplashScreen />
         <SmoothScrollProvider>
           <Navbar />
           <main>{children}</main>
           <Footer />
           <FloatingActions />
+          <CookieConsent />
         </SmoothScrollProvider>
       </body>
     </html>

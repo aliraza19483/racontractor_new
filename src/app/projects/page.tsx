@@ -5,7 +5,7 @@ import { ArrowUpRight, MapPin } from "lucide-react";
 import { projectPages, projectCover, projectPhotos } from "@/lib/projects";
 
 export const metadata: Metadata = {
-  title: "Our Projects: Interiors, Ceilings & Fit-outs in Hyderabad",
+  title: "Interior and Fit-out Projects in Hyderabad",
   description:
     "Projects by RA Contractor in Hyderabad with real site photographs: office ceiling fit-outs, large-hall commercial work, apartment interiors, false ceilings and wardrobes.",
   alternates: { canonical: "/projects" },

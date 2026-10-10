@@ -8,7 +8,7 @@ import { galleryItems } from "@/lib/galleryData";
 import { siteConfig } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "About Us: Civil & Interior Contractors in Hyderabad",
+  title: "About Our Civil and Interior Team, Hyderabad",
   description:
     "About RA Contractor, a Hyderabad-based civil construction and interior contractor in Borabanda: who we are, who leads the work and where we work.",
   alternates: { canonical: "/about" },
@@ -57,7 +57,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-3 gap-3">
             {photos.map((g, i) => g && (
               <div key={g.id} className={`relative overflow-hidden rounded-lg bg-[var(--color-gray-light)] ${i === 0 ? "col-span-3 aspect-[16/10]" : "col-span-1 aspect-[3/4] sm:col-span-1"}`}>
-                <Image src={g.src} alt="RA Contractor site photo, Hyderabad" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
+                <Image src={g.src} alt={`${g.title} by RA Contractor, ${g.location}`} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
               </div>
             ))}
             <p className="col-span-3 text-xs text-[var(--color-gray-medium)]">Photos from our Hyderabad sites.</p>

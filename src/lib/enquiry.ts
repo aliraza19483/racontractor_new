@@ -26,6 +26,8 @@ export const enquirySchema = z.object({
   message: z.string().trim().min(10, "Please describe your requirement in a few words").max(1500),
   /** honeypot, must stay empty */
   website: z.string().optional().default(""),
+  /** Cloudflare Turnstile token (verified server-side, never emailed) */
+  turnstileToken: z.string().max(2048).optional().default(""),
 });
 
 export type Enquiry = z.infer<typeof enquirySchema>;

@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { ArrowRight, CheckCircle2, ChevronLeft, MessageCircle } from "lucide-react";
 import { siteConfig } from "@/lib/constants";
+import Turnstile from "@/components/contact/Turnstile";
 
 const serviceOptions = [
   "Civil Construction",
@@ -37,6 +39,7 @@ const TOTAL_STEPS = stepTitles.length;
 const MAX_AREA = 5000;
 const MAX_MESSAGE = 1500;
 const DRAFT_KEY = "ra-enquiry-draft";
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
 
 /** Which step each server-validated field lives on, so errors can send the user back to it. */
 const fieldStep: Record<string, number> = {
@@ -187,6 +190,14 @@ function ChipGroup({
 }
 
 export default function EnquiryForm() {
+  const router = useRouter();
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [captchaReset, setCaptchaReset] = useState(0);
+  /** Turnstile tokens are single-use, so ask for a fresh one after any failed send. */
+  const resetCaptcha = () => {
+    setCaptchaToken("");
+    setCaptchaReset((n) => n + 1);
+  };
   const [status, setStatus] = useState<Status>("idle");
   const [step, setStep] = useState(1);
   const [maxStep, setMaxStep] = useState(1);
@@ -276,6 +287,7 @@ export default function EnquiryForm() {
     location: values.location,
     message: values.message,
     website: values.website,
+    turnstileToken: captchaToken,
   });
 
   const waText = [
@@ -313,6 +325,17 @@ export default function EnquiryForm() {
           /* ignore */
         }
         setStatus("success");
+        router.push("/thank-you");
+        return;
+      }
+      if (data.error === "captcha_failed") {
+        setNotice(
+          data.reason === "unavailable"
+            ? "Verification service is busy. Please try again in a moment, or call or WhatsApp us."
+            : "Verification failed. Please tick the human check again and resend."
+        );
+        resetCaptcha();
+        setStatus("error");
         return;
       }
       if (res.status === 400 && data.fields) {
@@ -330,9 +353,11 @@ export default function EnquiryForm() {
       } else {
         setNotice("We could not send your enquiry right now. Please call or WhatsApp us, we will respond quickly.");
       }
+      resetCaptcha();
       setStatus("error");
     } catch {
       setNotice("Network problem. Please call or WhatsApp us instead.");
+      resetCaptcha();
       setStatus("error");
     }
   }
@@ -361,6 +386,10 @@ export default function EnquiryForm() {
         focusField(Object.keys(earlier)[0]);
         return;
       }
+    }
+    if (TURNSTILE_SITE_KEY && !captchaToken) {
+      setNotice("Please complete the human verification before sending.");
+      return;
     }
     void send();
   }
@@ -677,6 +706,10 @@ export default function EnquiryForm() {
             <label htmlFor="enq-website">Website</label>
             <input id="enq-website" name="website" tabIndex={-1} autoComplete="off" value={values.website} onChange={(e) => update("website", e.target.value)} />
           </div>
+
+          {TURNSTILE_SITE_KEY && (
+            <Turnstile siteKey={TURNSTILE_SITE_KEY} onToken={setCaptchaToken} resetKey={captchaReset} />
+          )}
 
           <div>
             <h4 className="!mb-2 text-sm font-medium text-[var(--color-navy)]">Your enquiry</h4>

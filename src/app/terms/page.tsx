@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Terms of Service | RA Contractor",
+  title: "Terms of Service",
   description: "Terms of Service for RA Contractor",
 };
 

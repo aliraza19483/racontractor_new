@@ -1,6 +1,7 @@
 export interface GalleryItem {
   id: number;
   src: string;
+  originalName?: string;
   category: "commercial" | "residential" | "industrial" | "ceiling-electrical";
   title: string;
   location: string;

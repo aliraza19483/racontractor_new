@@ -38,7 +38,7 @@ export default function WhyChooseUs() {
         <SectionHeading
           eyebrow="Why Choose Us"
           title="Why Choose RA Contractor?"
-          description="We combine structural engineering integrity with bespoke interior execution to deliver turnkey spaces that exceed expectations at every level."
+          description="Civil work and interiors handled under one contract, with clear scope, supervised execution and honest communication."
         />
 
         <div

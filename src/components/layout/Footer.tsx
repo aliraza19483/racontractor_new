@@ -69,7 +69,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-sm text-white/50 leading-relaxed mb-6 font-[family-name:var(--font-dm-sans)]">
-              Creating timeless structures and interiors for modern living. We deliver turnkey civil construction and bespoke interior execution built to last generations.
+              Civil construction and interior contractors in Hyderabad: turnkey projects, home interiors, false ceilings, painting, electrical work and commercial fit-outs.
             </p>
 
             {/* Social Links */}
@@ -140,7 +140,7 @@ export default function Footer() {
             </h4>
             <div className="space-y-4">
               <a
-                href={`tel:${siteConfig.phone}`}
+                href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
                 className="flex items-start gap-3 text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors group font-[family-name:var(--font-dm-sans)]"
               >
                 <Phone className="w-4 h-4 mt-0.5 text-[var(--color-gold)]/60 group-hover:text-[var(--color-gold)]" />
@@ -164,26 +164,12 @@ export default function Footer() {
               </a>
             </div>
 
-            {/* Newsletter */}
-            <div className="mt-8">
-              <h5 className="text-xs font-semibold uppercase tracking-[0.15em] text-white/70 mb-3 font-[family-name:var(--font-dm-sans)]">
-                Newsletter
-              </h5>
-              <form className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="flex-1 bg-white/5 border border-white/10 rounded-sm px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--color-gold)]/50 transition-colors font-[family-name:var(--font-dm-sans)]"
-                />
-                <button
-                  type="submit"
-                  aria-label="Subscribe"
-                  className="w-10 h-10 bg-[var(--color-gold)] text-[var(--color-navy)] flex items-center justify-center rounded-sm hover:bg-[var(--color-gold-light)] transition-colors"
-                >
-                  <ArrowUpRight className="w-4 h-4" />
-                </button>
-              </form>
-            </div>
+            <Link
+              href="/contact"
+              className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-gold)] hover:text-[var(--color-gold-light)] font-[family-name:var(--font-dm-sans)]"
+            >
+              Send an enquiry <ArrowUpRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </div>

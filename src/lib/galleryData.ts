@@ -1,13 +1,14 @@
 export interface GalleryItem {
   id: number;
   src: string;
+  originalName?: string;
   category: "commercial" | "residential" | "industrial" | "ceiling-electrical";
   title: string;
   location: string;
 }
 
 export const galleryCategories = [
-  { label: "All Real Work (54)", value: "all" },
+  { label: "All Photos", value: "all" },
   { label: "Commercial Fit-outs", value: "commercial" },
   { label: "Industrial & Civil", value: "industrial" },
   { label: "Ceiling & MEP", value: "ceiling-electrical" },
@@ -356,7 +357,7 @@ export const galleryItems: GalleryItem[] = [
     "src": "/images/gallery/site-execution-43.jpg",
     "originalName": "motion_photo_1682780251845084032.jpg",
     "category": "residential",
-    "title": "Luxury Residential & Joinery Execution",
+    "title": "Residential Interior & Joinery Work",
     "location": "Hyderabad"
   },
   {
@@ -364,7 +365,7 @@ export const galleryItems: GalleryItem[] = [
     "src": "/images/gallery/site-execution-44.jpg",
     "originalName": "motion_photo_3277091265702540791.jpg",
     "category": "residential",
-    "title": "Luxury Residential & Joinery Execution",
+    "title": "Residential Interior & Joinery Work",
     "location": "Hyderabad"
   },
   {
@@ -372,7 +373,7 @@ export const galleryItems: GalleryItem[] = [
     "src": "/images/gallery/site-execution-45.jpg",
     "originalName": "motion_photo_3924042550634220787.jpg",
     "category": "residential",
-    "title": "Luxury Residential & Joinery Execution",
+    "title": "Residential Interior & Joinery Work",
     "location": "Hyderabad"
   },
   {
@@ -380,7 +381,7 @@ export const galleryItems: GalleryItem[] = [
     "src": "/images/gallery/site-execution-46.jpg",
     "originalName": "motion_photo_3986099951344741429.jpg",
     "category": "residential",
-    "title": "Luxury Residential & Joinery Execution",
+    "title": "Residential Interior & Joinery Work",
     "location": "Hyderabad"
   },
   {
@@ -388,7 +389,7 @@ export const galleryItems: GalleryItem[] = [
     "src": "/images/gallery/site-execution-47.jpg",
     "originalName": "motion_photo_558133638758147672.jpg",
     "category": "residential",
-    "title": "Luxury Residential & Joinery Execution",
+    "title": "Residential Interior & Joinery Work",
     "location": "Hyderabad"
   },
   {
@@ -396,7 +397,7 @@ export const galleryItems: GalleryItem[] = [
     "src": "/images/gallery/site-execution-48.jpg",
     "originalName": "motion_photo_5855893551264333679.jpg",
     "category": "residential",
-    "title": "Luxury Residential & Joinery Execution",
+    "title": "Residential Interior & Joinery Work",
     "location": "Hyderabad"
   },
   {
@@ -404,7 +405,7 @@ export const galleryItems: GalleryItem[] = [
     "src": "/images/gallery/site-execution-49.jpg",
     "originalName": "motion_photo_6764277398034721249.jpg",
     "category": "residential",
-    "title": "Luxury Residential & Joinery Execution",
+    "title": "Residential Interior & Joinery Work",
     "location": "Hyderabad"
   },
   {
@@ -412,7 +413,7 @@ export const galleryItems: GalleryItem[] = [
     "src": "/images/gallery/site-execution-50.jpg",
     "originalName": "motion_photo_7368218142857732350.jpg",
     "category": "residential",
-    "title": "Luxury Residential & Joinery Execution",
+    "title": "Residential Interior & Joinery Work",
     "location": "Hyderabad"
   },
   {
@@ -420,7 +421,7 @@ export const galleryItems: GalleryItem[] = [
     "src": "/images/gallery/site-execution-51.jpg",
     "originalName": "motion_photo_8114888585833163382.jpg",
     "category": "residential",
-    "title": "Luxury Residential & Joinery Execution",
+    "title": "Residential Interior & Joinery Work",
     "location": "Hyderabad"
   },
   {
@@ -428,7 +429,7 @@ export const galleryItems: GalleryItem[] = [
     "src": "/images/gallery/site-execution-52.jpg",
     "originalName": "motion_photo_8850790221455195579.jpg",
     "category": "residential",
-    "title": "Luxury Residential & Joinery Execution",
+    "title": "Residential Interior & Joinery Work",
     "location": "Hyderabad"
   },
   {
@@ -436,7 +437,7 @@ export const galleryItems: GalleryItem[] = [
     "src": "/images/gallery/site-execution-53.jpg",
     "originalName": "motion_photo_9123431118866765674.jpg",
     "category": "residential",
-    "title": "Luxury Residential & Joinery Execution",
+    "title": "Residential Interior & Joinery Work",
     "location": "Hyderabad"
   },
   {
@@ -444,7 +445,13 @@ export const galleryItems: GalleryItem[] = [
     "src": "/images/gallery/site-execution-54.jpg",
     "originalName": "motion_photo_9215741582972401696.jpg",
     "category": "residential",
-    "title": "Luxury Residential & Joinery Execution",
+    "title": "Residential Interior & Joinery Work",
     "location": "Hyderabad"
   }
 ];
+
+// Excluded from the public gallery: photos that look like stock/rendered
+// images (3-6) and exact duplicates of other photos. They stay in
+// galleryItems so older id references keep resolving.
+const EXCLUDED_IDS = new Set([3, 4, 5, 6, 14, 16, 18, 19, 20, 23, 36, 46, 48, 50, 53]);
+export const publicGalleryItems: GalleryItem[] = galleryItems.filter((g) => !EXCLUDED_IDS.has(g.id));

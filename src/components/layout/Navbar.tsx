@@ -106,7 +106,7 @@ export default function Navbar() {
                         <div className="bg-[#0B1528] rounded-2xl py-3 px-2 min-w-[270px] border border-[var(--color-gold)]/40 shadow-[0_20px_50px_rgba(0,0,0,0.85)] ring-1 ring-black/50">
                           <div className="px-3 pb-2 mb-1.5 border-b border-white/10 flex items-center justify-between">
                             <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--color-gold)] font-[family-name:var(--font-dm-sans)]">
-                              Core Specializations
+                              Our Services
                             </span>
                           </div>
                           {item.children.map((child) => (

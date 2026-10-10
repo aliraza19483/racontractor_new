@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, CheckCircle2, MessageCircle, Phone, Maximize2 } from "lucide-react";
-import { galleryItems, galleryCategories, GalleryItem } from "@/lib/galleryData";
+import { publicGalleryItems as galleryItems, galleryCategories, GalleryItem } from "@/lib/galleryData";
 import { siteConfig } from "@/lib/constants";
 
 export default function ProofGallery() {

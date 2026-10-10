@@ -6,7 +6,7 @@ import type { SiteConfig, NavItem } from "@/types";
 export const siteConfig: SiteConfig = {
   name: "RA CONTRACTOR",
   description:
-    "Creating timeless structures and interiors for modern living. Premier specialists in False Ceiling, Painting, Electrical Installation, Turnkey Civil Construction, and Bespoke Interior Execution in Hyderabad and across India.",
+    "Hyderabad-based civil construction and interior contractor: turnkey construction, home interiors, false ceilings, painting, electrical work and commercial fit-outs.",
   url: "https://racontractor.in",
   ogImage: "/images/og-image.jpg",
   phone: "+91 83748 97487",
@@ -28,36 +28,27 @@ export const siteConfig: SiteConfig = {
 // ============================================================
 export const navItems: NavItem[] = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/#about" },
+  { label: "About", href: "/about" },
   {
     label: "Services",
-    href: "/#categories",
+    href: "/services",
     children: [
+      { label: "Civil Construction", href: "/services/civil-contractors-hyderabad" },
       { label: "Turnkey Construction", href: "/services/turnkey-construction-hyderabad" },
-      { label: "Civil Contractors", href: "/services/civil-contractors-hyderabad" },
-      { label: "Luxury Interiors", href: "/services/luxury-interior-design-hyderabad" },
-      { label: "Commercial Interiors", href: "/services/commercial-interior-contractors-hyderabad" },
+      { label: "Home Interior Design", href: "/services/luxury-interior-design-hyderabad" },
+      { label: "Modular Kitchens", href: "/services/modular-kitchen-hyderabad" },
+      { label: "False Ceiling & Lighting", href: "/services/false-ceiling-hyderabad" },
+      { label: "Painting & Wall Finishes", href: "/services/painting-contractors-hyderabad" },
+      { label: "Electrical Work", href: "/services/electrical-contractors-hyderabad" },
+      { label: "Commercial Interior Fit-outs", href: "/services/commercial-interior-contractors-hyderabad" },
+      { label: "Carpentry & Wardrobes", href: "/services/carpentry-wardrobes-hyderabad" },
       { label: "All Services", href: "/services" },
-      { label: "Design & Build Process", href: "/#process" },
-      { label: "Why Choose Us", href: "/#why-choose-us" },
     ],
   },
   { label: "Projects", href: "/projects" },
-  { label: "Site Proof", href: "/gallery" },
+  { label: "Site Photos", href: "/gallery" },
   { label: "Guides", href: "/blog" },
-  { label: "Reviews", href: "/#testimonials" },
-  { label: "Process", href: "/#process" },
-  { label: "Contact", href: "/#contact" },
-];
-
-// ============================================================
-// Stats Counters
-// ============================================================
-export const stats = [
-  { value: 100, suffix: "+", label: "Turnkey Projects Executed", icon: "Building2" },
-  { value: 6, suffix: "+", label: "Years in Construction & Design", icon: "CalendarClock" },
-  { value: 98, suffix: "%", label: "On-Time Delivery Rate", icon: "Timer" },
-  { value: 15, suffix: "+", label: "Industry Excellence Awards", icon: "Award" },
+  { label: "Contact", href: "/contact" },
 ];
 
 // ============================================================
@@ -75,35 +66,35 @@ export const designProcess = [
     step: 2,
     title: "Site Inspection",
     description:
-      "Our engineering team conducts detailed structural assessment, laser measurements, and MEP evaluations on-site.",
+      "We inspect the site, take measurements and check structure, plumbing and electrical conditions.",
     icon: "MapPin",
   },
   {
     step: 3,
-    title: "Architectural Concept",
+    title: "Layout Planning",
     description:
-      "We create initial spatial layouts and architectural concepts that optimize flow, structural feasibility, and design elegance.",
+      "We plan layouts that suit how you use the space and what is structurally feasible.",
     icon: "Palette",
   },
   {
     step: 4,
-    title: "Mood Board & BOQ",
+    title: "Materials & BOQ",
     description:
-      "Curated selection of premium materials, finishes, and transparent Bill of Quantities (BOQ) detailing every specification.",
+      "Materials and finishes are selected with you and listed in a transparent, itemised Bill of Quantities (BOQ).",
     icon: "Layout",
   },
   {
     step: 5,
-    title: "3D & BIM Modeling",
+    title: "Design Finalisation",
     description:
-      "Photorealistic 3D visualizations and structural models let you experience your space in complete detail before execution begins.",
+      "Layouts, finishes and materials are confirmed with you before execution begins.",
     icon: "Monitor",
   },
   {
     step: 6,
     title: "Material Procurement",
     description:
-      "Hand-picked Grade-A materials procured directly from leading national and global manufacturing partners.",
+      "Materials are procured from reliable suppliers as listed in your BOQ.",
     icon: "Layers",
   },
   {
@@ -115,23 +106,23 @@ export const designProcess = [
   },
   {
     step: 8,
-    title: "Rigorous Quality Audit",
+    title: "Quality Checks",
     description:
-      "Multi-stage structural, plumbing, electrical, and joinery quality checks ensure flawless execution and longevity.",
+      "Structural, plumbing, electrical and joinery work is checked at each stage.",
     icon: "CheckCircle",
   },
   {
     step: 9,
-    title: "Final Interior Styling",
+    title: "Final Finishing",
     description:
-      "Custom joinery fit-out, lighting calibration, and luxury styling touches that transform the built structure into a masterpiece.",
+      "Joinery fit-out, lighting and final finishing touches complete the space.",
     icon: "Sparkles",
   },
   {
     step: 10,
     title: "Turnkey Handover",
     description:
-      "Your dream space is delivered on schedule with complete structural documentation, warranty certificates, and maintenance guides.",
+      "Your space is handed over with documentation and warranty support as agreed in your proposal.",
     icon: "Key",
   },
 ];
@@ -143,13 +134,13 @@ export const whyChooseUs = [
   {
     title: "Turnkey Contractor Expertise",
     description:
-      "Complete end-to-end civil construction, MEP engineering, and luxury interior fit-out under one unified contract.",
+      "Civil construction, plumbing and electrical coordination and interior fit-out under one contract.",
     icon: "PenTool",
   },
   {
-    title: "Grade-A Certified Materials",
+    title: "Quality Materials",
     description:
-      "Only top-tier structural steel, cement, architectural hardware, and premium finishes from internationally recognized brands.",
+      "Branded materials and fittings as specified in your BOQ.",
     icon: "Gem",
   },
   {
@@ -165,9 +156,9 @@ export const whyChooseUs = [
     icon: "UserCheck",
   },
   {
-    title: "3D & Structural Modeling",
+    title: "Design Reviewed With You",
     description:
-      "Photorealistic renders and engineering layouts that let you refine every detail before construction begins.",
+      "Layouts and finishes are discussed and agreed with you before work starts.",
     icon: "Monitor",
   },
   {
@@ -177,9 +168,9 @@ export const whyChooseUs = [
     icon: "Clock",
   },
   {
-    title: "Master Craftsmanship",
+    title: "Skilled Workmanship",
     description:
-      "Every detail is crafted to perfection — from structural masonry and joinery to custom finishes and precision lighting.",
+      "Experienced crews for masonry, joinery, finishes and lighting.",
     icon: "Crown",
   },
   {
@@ -191,7 +182,7 @@ export const whyChooseUs = [
   {
     title: "Comprehensive Warranty Support",
     description:
-      "Robust structural and interior finish warranties backed by responsive after-service support for complete peace of mind.",
+      "Warranty terms are confirmed in your proposal, with after-service support.",
     icon: "ShieldCheck",
   },
 ];

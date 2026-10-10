@@ -22,7 +22,7 @@ export default function ContactCTA() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url('/images/cta/luxury-living-room.jpg')`,
+            backgroundImage: `url('/images/gallery/site-execution-49.jpg')`,
           }}
         />
         <div className="absolute inset-0 bg-[var(--color-navy)]/85" />
@@ -35,26 +35,21 @@ export default function ContactCTA() {
         </span>
 
         <h2 className="text-white text-3xl md:text-5xl lg:text-6xl font-[family-name:var(--font-playfair)] max-w-4xl mx-auto mb-6 leading-[1.1]">
-          Ready to Build or Transform<br />
-          <span className="text-gradient-gold">Your Dream Space?</span>
+          Planning a Construction or<br />
+          <span className="text-gradient-gold">Interior Project?</span>
         </h2>
 
         <p className="text-white/60 text-base md:text-lg max-w-xl mx-auto mb-10 font-[family-name:var(--font-dm-sans)]">
-          Let&apos;s build something extraordinary together. Book a turnkey construction and bespoke interior consultation with RA CONTRACTOR today.
+          Tell us what you need. We will visit the site and prepare an itemised BOQ.
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
-          <a
-            href={`https://wa.me/${siteConfig.whatsapp}?text=Hello%20RA%20CONTRACTOR%20team,%20I%20would%20like%20to%20book%20a%20free%20turnkey%20consultation.`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-luxury btn-gold group"
-          >
-            Book Free Consultation
+          <Link href="/contact" className="btn-luxury btn-gold group">
+            Send Enquiry
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
+          </Link>
           <a
-            href={`https://wa.me/${siteConfig.whatsapp}`}
+            href={`https://wa.me/${siteConfig.whatsapp.replace(/\D/g, "")}`}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-luxury btn-outline group"

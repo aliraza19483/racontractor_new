@@ -3,18 +3,11 @@
 import { useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ChevronDown, Building2, CalendarClock, Timer, Award, ShieldCheck, MapPin } from "lucide-react";
-import AnimatedCounter from "@/components/animations/AnimatedCounter";
-import { stats } from "@/lib/constants";
+import Image from "next/image";
+import { ChevronDown, Phone, MessageCircle, Mail, MapPin } from "lucide-react";
+import { siteConfig } from "@/lib/constants";
 
 export default function Hero() {
-  const statIcons: Record<string, React.ElementType> = {
-    Building2,
-    CalendarClock,
-    Timer,
-    Award,
-  };
-
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -26,7 +19,7 @@ export default function Hero() {
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
 
   // Word-by-word animation for headline
-  const headlineWords = "Hyderabad's Trusted Turnkey Interior & Civil Contractor.".split(" ");
+  const headlineWords = "Civil Construction & Interior Contractors in Hyderabad".split(" ");
 
   const containerVariants = {
     hidden: {},
@@ -50,18 +43,20 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative h-screen min-h-[700px] flex items-center overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden pt-28 pb-20"
     >
       {/* Background Image with Parallax */}
       <motion.div
         className="absolute inset-0 z-0"
         style={{ y, scale }}
       >
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url('/images/hero/hero-luxury-interior.jpg')`,
-          }}
+        <Image
+          src="/images/hero/hero-hyderabad-site.jpg"
+          alt="False ceiling and wall paneling work completed by RA Contractor in Hyderabad"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
         />
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-navy)]/95 via-[var(--color-navy)]/85 to-[var(--color-navy)]/70" />
@@ -81,12 +76,9 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-wrap items-center gap-3 mb-6"
           >
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-[var(--color-gold)]/30 text-xs font-semibold tracking-wide text-[var(--color-gold-light)] font-[family-name:var(--font-dm-sans)] shadow-sm">
-              ✨ 100+ Turnkey Projects Delivered
-            </span>
-            <span className="hidden sm:inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-[var(--color-gold)] font-[family-name:var(--font-dm-sans)] drop-shadow-sm">
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-gold)] font-[family-name:var(--font-dm-sans)] drop-shadow-sm">
               <span className="w-6 h-px bg-[var(--color-gold)]" />
-              Civil & Turnkey Contractor
+              Borabanda, Hyderabad
             </span>
           </motion.div>
 
@@ -101,7 +93,7 @@ export default function Hero() {
               <span key={i} className="inline-block overflow-hidden">
                 <motion.span
                   className={`inline-block ${
-                    word === "Contractor."
+                    word === "Hyderabad"
                       ? "text-gradient-gold drop-shadow-[0_2px_12px_rgba(201,169,110,0.4)]"
                       : "!text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
                   }`}
@@ -116,12 +108,12 @@ export default function Hero() {
 
           {/* Subheading */}
           <motion.p
-            className="text-lg md:text-xl !text-white/90 mb-10 max-w-2xl leading-relaxed font-[family-name:var(--font-cormorant)] italic text-[1.25rem] md:text-[1.4rem] drop-shadow-md"
+            className="text-lg md:text-xl !text-white/90 mb-8 max-w-2xl leading-relaxed font-[family-name:var(--font-dm-sans)] drop-shadow-md"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.1 }}
           >
-            Creating timeless structures and luxury interiors for modern living. Turnkey civil execution, engineering precision, and bespoke aesthetics.
+            Complete construction, home interiors, renovations and commercial fit-outs tailored to your requirements.
           </motion.p>
 
           {/* CTAs */}
@@ -131,65 +123,44 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.3 }}
           >
-            <a href="#contact" className="btn-luxury btn-gold shadow-lg">
-              Book Consultation
+            <a href={`tel:${siteConfig.phone.replace(/\s/g, "")}`} className="btn-luxury btn-gold shadow-lg inline-flex items-center gap-2">
+              <Phone className="w-4 h-4" /> Call Now
             </a>
-            <a href="#portfolio" className="btn-luxury btn-outline !border-white/30 !text-white hover:!border-[var(--color-gold)] hover:!text-[var(--color-gold)]">
-              Explore Portfolio
-            </a>
+            <Link href="/projects" className="btn-luxury btn-outline !border-white/30 !text-white hover:!border-[var(--color-gold)] hover:!text-[var(--color-gold)]">
+              View Our Projects
+            </Link>
           </motion.div>
         </div>
 
-        {/* Stats */}
+        {/* Contact details */}
         <motion.div
-          className="mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-3xl"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1.6 }}
-        >
-          {stats.map((stat, i) => {
-            const StatIcon = statIcons[stat.icon] || Building2;
-            return (
-              <div
-                key={i}
-                className="border-l border-[var(--color-gold)]/40 pl-4 md:pl-6"
-              >
-                <StatIcon className="w-5 h-5 md:w-6 md:h-6 text-[var(--color-gold)] mb-2 drop-shadow-md" />
-                <div className="text-3xl md:text-4xl font-bold !text-white font-[family-name:var(--font-playfair)] drop-shadow-md">
-                  <AnimatedCounter
-                    value={stat.value}
-                    suffix={stat.suffix}
-                  />
-                </div>
-                <p className="text-xs md:text-sm !text-white/75 font-medium mt-1 font-[family-name:var(--font-dm-sans)] drop-shadow-sm">
-                  {stat.label}
-                </p>
-              </div>
-            );
-          })}
-        </motion.div>
-
-        {/* Trust Strip */}
-        <motion.div
-          className="mt-8 md:mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 max-w-3xl"
+          className="mt-10 md:mt-12 flex flex-col sm:flex-row sm:flex-wrap gap-x-8 gap-y-3 max-w-3xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1.8 }}
+          transition={{ duration: 0.7, delay: 1.5 }}
         >
-          {[
-            { icon: ShieldCheck, label: "GST Registered" },
-            { icon: CalendarClock, label: "6+ Years Experience" },
-            { icon: Building2, label: "100+ Projects Delivered" },
-            { icon: MapPin, label: "Hyderabad Based" },
-          ].map((item, i) => (
-            <span
-              key={i}
-              className="inline-flex items-center gap-1.5 text-xs md:text-sm font-medium !text-white/80 font-[family-name:var(--font-dm-sans)] drop-shadow-sm"
-            >
-              <item.icon className="w-4 h-4 text-[var(--color-gold)]" />
-              {item.label}
-            </span>
-          ))}
+          <a
+            href={`https://wa.me/${siteConfig.whatsapp.replace(/\D/g, "")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-medium !text-white/90 hover:!text-[var(--color-gold)] transition-colors font-[family-name:var(--font-dm-sans)]"
+          >
+            <MessageCircle className="w-4 h-4 text-[var(--color-gold)]" /> WhatsApp {siteConfig.phone}
+          </a>
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className="inline-flex items-center gap-2 text-sm font-medium !text-white/90 hover:!text-[var(--color-gold)] transition-colors font-[family-name:var(--font-dm-sans)]"
+          >
+            <Mail className="w-4 h-4 text-[var(--color-gold)]" /> {siteConfig.email}
+          </a>
+          <a
+            href={siteConfig.googleMapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-medium !text-white/90 hover:!text-[var(--color-gold)] transition-colors font-[family-name:var(--font-dm-sans)]"
+          >
+            <MapPin className="w-4 h-4 text-[var(--color-gold)]" /> Borabanda, Hyderabad
+          </a>
         </motion.div>
       </motion.div>
 

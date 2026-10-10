@@ -4,13 +4,12 @@ import { playfair, dmSans, cormorant } from "@/lib/fonts";
 import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import SplashScreen from "@/components/common/SplashScreen";
 import FloatingActions from "@/components/common/FloatingActions";
 import "./globals.css";
 
-const TITLE = "Turnkey Contractor in Hyderabad | Civil & Interior Contractors – RA Contractor";
+const TITLE = "Civil Construction & Interior Contractors in Hyderabad | RA Contractor";
 const DESC =
-  "RA Contractor is a Hyderabad-based turnkey civil and interior contractor offering residential construction, luxury interiors, commercial fit-outs and complete project execution.";
+  "RA Contractor is a Hyderabad-based civil construction and interior contractor offering turnkey construction, home interiors, renovations and commercial fit-outs.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://racontractor.in"),
@@ -80,9 +79,8 @@ const jsonLdOrganization = {
   url: "https://racontractor.in",
   telephone: "+91 83748 97487",
   email: "racontractor35@gmail.com",
-  priceRange: "₹₹₹",
   description:
-    "Hyderabad-based turnkey civil and interior contractor: residential construction, luxury interiors, commercial fit-outs and complete project execution.",
+    "Hyderabad-based turnkey civil and interior contractor: residential construction, home interiors, commercial fit-outs and complete project execution.",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Allapur Rd, near JK Point, Swaraj Nagar, Borabanda",
@@ -120,11 +118,6 @@ const jsonLdOrganization = {
   ],
   sameAs: [
     "https://maps.app.goo.gl/Fr5AXyx2DzKuqXZN8",
-    "https://instagram.com/racontractor",
-    "https://facebook.com/racontractor",
-    "https://linkedin.com/company/racontractor",
-    "https://pinterest.com/racontractor",
-    "https://youtube.com/@racontractor",
   ],
 };
 
@@ -150,7 +143,6 @@ export default function RootLayout({
       </head>
       <body>
         <SmoothScrollProvider>
-          <SplashScreen />
           <Navbar />
           <main>{children}</main>
           <Footer />

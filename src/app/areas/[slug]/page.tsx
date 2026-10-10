@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { areas, getArea } from "@/lib/areas";
 import { services } from "@/lib/services";
+import { projectPages } from "@/lib/projects";
 import { siteConfig } from "@/lib/constants";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const a = getArea((await params).slug);
   if (!a) return {};
   const title = `Civil & Interior Contractors in ${a.name}, Hyderabad`;
-  const description = `RA Contractor delivers turnkey civil and interior work in ${a.name}, Hyderabad. See our projects there and request a site inspection.`;
+  const description = `RA Contractor delivers turnkey civil and interior work in ${a.name}, Hyderabad. Request a site inspection and see our recent Hyderabad projects.`;
   return { title, description, alternates: { canonical: `/areas/${a.slug}` }, openGraph: { title, description, url: `/areas/${a.slug}` } };
 }
 
@@ -38,10 +39,10 @@ export default async function AreaPage({ params }: Props) {
       <section className="section section-light">
         <div className="container-luxury grid gap-12 md:grid-cols-2">
           <div>
-            <h2 className="text-2xl font-[family-name:var(--font-playfair)] text-[var(--color-navy)] mb-4">Our projects in {a.name}</h2>
+            <h2 className="text-2xl font-[family-name:var(--font-playfair)] text-[var(--color-navy)] mb-4">Our recent projects in Hyderabad</h2>
             <ul className="space-y-2">
-              {a.projects.map((p) => (
-                <li key={p.slug}><Link className="text-[var(--color-gold-dark)] hover:underline" href={`/projects/${p.slug}`}>{p.title}, {p.area}</Link></li>
+              {projectPages.map((p) => (
+                <li key={p.slug}><Link className="text-[var(--color-gold-dark)] hover:underline" href={`/projects/${p.slug}`}>{p.title}, {p.location}</Link></li>
               ))}
             </ul>
           </div>

@@ -43,7 +43,7 @@ export const services: ServicePage[] = [
       "Dedicated site manager",
       "Handover with documentation and warranty support",
     ],
-    image: "/images/portfolio/moldtech-technologies.jpg",
+    image: "/images/gallery/site-execution-24.jpg",
     gallery: [],
     faqs: [
       {
@@ -77,16 +77,16 @@ export const services: ServicePage[] = [
       "Flooring and tile work",
       "Renovation and remodelling",
     ],
-    image: "/images/portfolio/prithvi-toyota-showroom.jpg",
+    image: "/images/gallery/site-execution-11.jpg",
     gallery: [],
     faqs: [BOQ_FAQ, COST_FAQ, AREA_FAQ],
     related: ["turnkey-construction-hyderabad", "painting-contractors-hyderabad", "electrical-contractors-hyderabad"],
   },
   {
     slug: "luxury-interior-design-hyderabad",
-    name: "Luxury Interiors",
-    h1: "Luxury Interior Design & Execution in Hyderabad",
-    metaTitle: "Luxury Interior Design & Execution in Hyderabad",
+    name: "Home Interior Design",
+    h1: "Home Interior Design & Execution in Hyderabad",
+    metaTitle: "Home Interior Design & Execution in Hyderabad",
     metaDescription:
       "Home interiors in Hyderabad covering living rooms, bedrooms, dining, wardrobes, ceilings, lighting and finishing in one scope.",
     intro:
@@ -228,9 +228,9 @@ export const services: ServicePage[] = [
     h1: "Custom Carpentry & Wardrobe Contractors in Hyderabad",
     metaTitle: "Custom Carpentry & Wardrobes in Hyderabad",
     metaDescription:
-      "Custom woodwork, wardrobes, TV units and bespoke carpentry in Hyderabad, designed to maximise storage with quality fittings.",
+      "Custom woodwork, wardrobes, TV units and custom carpentry in Hyderabad, designed to maximise storage with quality fittings.",
     intro:
-      "Custom woodwork, wardrobes, TV consoles and bespoke carpentry designed to maximise your storage, with quality fittings and finishes chosen to suit your budget.",
+      "Custom woodwork, wardrobes, TV consoles and custom carpentry designed to maximise your storage, with quality fittings and finishes chosen to suit your budget.",
     features: [
       "Sliding and hinged wardrobes",
       "Walk-in closet fit-outs",

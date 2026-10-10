@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { services } from "@/lib/services";
+import { serviceMedia } from "@/lib/serviceContent";
 
 export const metadata: Metadata = {
   title: "Civil & Interior Contractor Services in Hyderabad",
-  description: "Turnkey construction, civil work, luxury and commercial interiors, kitchens, ceilings, painting and electrical by RA Contractor in Hyderabad.",
+  description: "Turnkey construction, civil work, home and commercial interiors, kitchens, ceilings, painting and electrical by RA Contractor in Hyderabad.",
   alternates: { canonical: "/services" },
 };
 
@@ -28,12 +30,21 @@ export default function ServicesIndex() {
       </section>
       <section className="section section-light">
         <div className="container-luxury grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((s) => (
-            <Link key={s.slug} href={`/services/${s.slug}`} className="block rounded-lg border border-[var(--color-gray-light)] p-6 hover:border-[var(--color-gold)]">
-              <h2 className="text-xl font-[family-name:var(--font-playfair)] text-[var(--color-navy)]">{s.h1}</h2>
-              <p className="mt-2 text-sm text-[var(--color-gray-medium)]">{s.metaDescription}</p>
-            </Link>
-          ))}
+          {services.map((s) => {
+            const m = serviceMedia(s.slug, s.image);
+            return (
+              <Link key={s.slug} href={`/services/${s.slug}`} className="block overflow-hidden rounded-lg border border-[var(--color-gray-light)] hover:border-[var(--color-gold)]">
+                <div className="relative aspect-[16/10] bg-[var(--color-gray-light)]">
+                  <Image src={m.hero} alt={`${s.name} in Hyderabad`} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
+                </div>
+                <div className="p-6">
+                  <h2 className="text-xl font-[family-name:var(--font-playfair)] text-[var(--color-navy)]">{s.h1}</h2>
+                  <p className="mt-2 text-sm text-[var(--color-gray-medium)]">{s.metaDescription}</p>
+                  <span className="mt-4 inline-block text-sm font-semibold text-[var(--color-gold-dark)]">View service →</span>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
     </>

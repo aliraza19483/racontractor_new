@@ -15,11 +15,8 @@ export const siteConfig: SiteConfig = {
   address: "Allapur Rd, near JK Point, Swaraj Nagar, Borabanda, Hyderabad, Telangana 500114",
   googleMapsUrl: "https://maps.app.goo.gl/Fr5AXyx2DzKuqXZN8",
   socialLinks: {
-    instagram: "https://instagram.com/racontractor",
-    facebook: "https://facebook.com/racontractor",
-    linkedin: "https://linkedin.com/company/racontractor",
-    pinterest: "https://pinterest.com/racontractor",
-    youtube: "https://youtube.com/@racontractor",
+    instagram: "https://www.instagram.com/ra.interior.contractor?xtok=dGdkN2psa2lod3lk",
+    facebook: "https://www.facebook.com/share/19vQ2LWx58/",
   },
 };
 

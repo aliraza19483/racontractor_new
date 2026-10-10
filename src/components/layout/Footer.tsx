@@ -22,19 +22,6 @@ const SocialIcons = {
       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
     </svg>
   ),
-  Linkedin: ({ className }: { className?: string }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-      <rect width="4" height="12" x="2" y="9" />
-      <circle cx="4" cy="4" r="2" />
-    </svg>
-  ),
-  Youtube: ({ className }: { className?: string }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
-      <path d="m10 15 5-3-5-3z" />
-    </svg>
-  ),
 };
 
 const footerServices = [
@@ -77,8 +64,6 @@ export default function Footer() {
               {[
                 { icon: SocialIcons.Instagram, href: siteConfig.socialLinks.instagram, label: "Instagram" },
                 { icon: SocialIcons.Facebook, href: siteConfig.socialLinks.facebook, label: "Facebook" },
-                { icon: SocialIcons.Linkedin, href: siteConfig.socialLinks.linkedin, label: "LinkedIn" },
-                { icon: SocialIcons.Youtube, href: siteConfig.socialLinks.youtube, label: "YouTube" },
               ].map((social) => (
                 <a
                   key={social.label}

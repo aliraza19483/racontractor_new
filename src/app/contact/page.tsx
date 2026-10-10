@@ -65,13 +65,13 @@ export default function ContactPage() {
       <section className="section section-beige">
         <div className="container-luxury grid gap-10 lg:grid-cols-[1.2fr_1fr]">
           <EnquiryForm />
-          <div className="space-y-4">
+          <div className="flex flex-col gap-4">
             {details.map((d) => (
               <a
                 key={d.label}
                 href={d.href}
                 {...(d.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="flex items-start gap-4 rounded-lg border border-[var(--color-gray-light)] bg-white p-5 hover:border-[var(--color-gold)] transition-colors"
+                className="flex items-start gap-4 rounded-lg border border-[var(--color-gray-light)] bg-white !p-5 hover:border-[var(--color-gold)] transition-colors"
               >
                 <d.icon className="w-5 h-5 mt-0.5 text-[var(--color-gold-dark)] shrink-0" />
                 <span>
@@ -80,6 +80,24 @@ export default function ContactPage() {
                 </span>
               </a>
             ))}
+
+            <div className="rounded-lg border border-[var(--color-gray-light)] bg-white !p-5">
+              <h2 className="text-lg font-[family-name:var(--font-playfair)] text-[var(--color-navy)]">What happens next</h2>
+              <ol className="!mt-3 flex flex-col gap-3 text-sm text-[var(--color-black-soft)] font-[family-name:var(--font-dm-sans)]">
+                {[
+                  "We review your enquiry and call you.",
+                  "We visit your site and take measurements.",
+                  "You receive an itemised BOQ.",
+                ].map((s, i) => (
+                  <li key={s} className="flex items-start gap-3">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-gold)]/20 text-xs font-semibold text-[var(--color-gold-dark)]">
+                      {i + 1}
+                    </span>
+                    <span>{s}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
         </div>
       </section>

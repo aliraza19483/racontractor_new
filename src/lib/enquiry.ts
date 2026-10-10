@@ -14,9 +14,16 @@ export const enquirySchema = z.object({
     .refine((v) => v === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v), "Enter a valid email")
     .optional()
     .default(""),
-  service: z.string().trim().max(80).optional().default(""),
+  /** one or more services, comma separated */
+  service: z.string().trim().max(300).optional().default(""),
+  propertyType: z.string().trim().max(60).optional().default(""),
+  /** approximate size, e.g. "1,200 sq ft" */
+  area: z.string().trim().max(40).optional().default(""),
+  budget: z.string().trim().max(40).optional().default(""),
+  timeline: z.string().trim().max(40).optional().default(""),
+  callTime: z.string().trim().max(40).optional().default(""),
   location: z.string().trim().max(120).optional().default(""),
-  message: z.string().trim().min(5, "Please describe your requirement").max(1500),
+  message: z.string().trim().min(10, "Please describe your requirement in a few words").max(1500),
   /** honeypot, must stay empty */
   website: z.string().optional().default(""),
 });
@@ -28,13 +35,21 @@ export function buildEmail(e: Enquiry) {
     `Name: ${e.name}`,
     `Phone: ${e.phone}`,
     `Email: ${e.email || "-"}`,
+    `Best time to call: ${e.callTime || "-"}`,
+    "",
     `Service: ${e.service || "-"}`,
+    `Property: ${e.propertyType || "-"}`,
+    `Approx. area: ${e.area || "-"}`,
+    `Budget: ${e.budget || "-"}`,
+    `Start: ${e.timeline || "-"}`,
     `Location: ${e.location || "-"}`,
     "",
     e.message,
   ];
+  const services = e.service.split(",").map((s) => s.trim()).filter(Boolean);
+  const serviceTag = services.length > 1 ? `${services[0]} +${services.length - 1} more` : services[0] ?? "";
   return {
-    subject: `New website enquiry from ${e.name}${e.service ? ` (${e.service})` : ""}`,
+    subject: `New website enquiry from ${e.name}${serviceTag ? ` (${serviceTag})` : ""}`,
     text: lines.join("\n"),
   };
 }

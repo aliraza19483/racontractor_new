@@ -118,7 +118,7 @@ export default function Hero() {
 
           {/* CTAs */}
           <motion.div
-            className="flex flex-wrap gap-4"
+            className="flex flex-wrap gap-4 mb-8 sm:mb-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.3 }}
@@ -134,7 +134,8 @@ export default function Hero() {
 
         {/* Contact details */}
         <motion.div
-          className="mt-10 md:mt-12 flex flex-col sm:flex-row sm:flex-wrap gap-x-8 gap-y-3 max-w-3xl"
+          style={{ marginTop: "36px" }}
+          className="pt-2 flex flex-col sm:flex-row sm:flex-wrap gap-x-8 gap-y-3 max-w-3xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 1.5 }}

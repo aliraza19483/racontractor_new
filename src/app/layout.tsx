@@ -118,6 +118,8 @@ const jsonLdOrganization = {
   ],
   sameAs: [
     "https://maps.app.goo.gl/Fr5AXyx2DzKuqXZN8",
+    "https://www.instagram.com/ra.interior.contractor?xtok=dGdkN2psa2lod3lk",
+    "https://www.facebook.com/share/19vQ2LWx58/",
   ],
 };
 

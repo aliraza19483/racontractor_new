@@ -130,8 +130,8 @@ export interface SiteConfig {
   socialLinks: {
     instagram: string;
     facebook: string;
-    linkedin: string;
-    pinterest: string;
-    youtube: string;
+    linkedin?: string;
+    pinterest?: string;
+    youtube?: string;
   };
 }

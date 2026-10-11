@@ -32,7 +32,7 @@ export const navItems: NavItem[] = [
     children: [
       { label: "Civil Construction", href: "/services/civil-contractors-hyderabad" },
       { label: "Turnkey Construction", href: "/services/turnkey-construction-hyderabad" },
-      { label: "Home Interior Design", href: "/services/luxury-interior-design-hyderabad" },
+      { label: "Home Interior Design", href: "/services/home-interior-design-hyderabad" },
       { label: "Modular Kitchens", href: "/services/modular-kitchen-hyderabad" },
       { label: "False Ceiling & Lighting", href: "/services/false-ceiling-hyderabad" },
       { label: "Painting & Wall Finishes", href: "/services/painting-contractors-hyderabad" },
@@ -42,6 +42,7 @@ export const navItems: NavItem[] = [
       { label: "All Services", href: "/services" },
     ],
   },
+  { label: "Areas", href: "/areas" },
   { label: "Projects", href: "/projects" },
   { label: "Site Photos", href: "/gallery" },
   { label: "Guides", href: "/blog" },

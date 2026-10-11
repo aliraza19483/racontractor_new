@@ -6,7 +6,6 @@ import { projectPages } from "@/lib/projects";
 import { areas as areaPages } from "@/lib/areas";
 import { posts } from "@/lib/blog";
 
-const areas = ["Jubilee Hills", "Banjara Hills", "Gachibowli", "Kondapur", "Madhapur", "Kokapet", "Financial District"];
 
 export default function HomeFAQ() {
   return (
@@ -24,12 +23,13 @@ export default function HomeFAQ() {
               Areas We Serve in Hyderabad
             </h2>
             <p className="text-[var(--color-gray-medium)] mb-4 font-[family-name:var(--font-dm-sans)]">
-              Our work covers {areas.join(", ")} and the rest of Hyderabad.
+              Our work covers {areaPages.map((a) => a.name).join(", ")} and the rest of Hyderabad.
             </p>
             <ul className="flex flex-wrap gap-x-4 gap-y-1 mb-8">
               {areaPages.map((a) => (
                 <li key={a.slug}><Link href={`/areas/${a.slug}`} className="text-[var(--color-gold-dark)] hover:underline">{a.name}</Link></li>
               ))}
+              <li><Link href="/areas" className="text-[var(--color-gold-dark)] hover:underline">All areas</Link></li>
             </ul>
             <h3 className="text-lg font-semibold text-[var(--color-navy)] mb-3">Our Services</h3>
             <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2 mb-8">

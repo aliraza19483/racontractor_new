@@ -36,3 +36,22 @@
 - No Content-Security-Policy yet (would need testing against GSAP, Maps, Turnstile and GA).
 - Blog post titles are 64-68 characters + brand, so Google may shorten them.
 - Have a lawyer glance over the privacy policy wording.
+
+---
+
+# SEO update (11 Oct 2026)
+
+- **Security:** `.env.local` removed from this package. Rotate the Google Places, Resend and Turnstile secrets that were in the earlier zip.
+- **Area pages:** `areas.ts` now has 14 areas with unique content each (intro, property types, popular work, site notes, nearby areas, locality FAQ). New template adds Service + FAQ + Breadcrumb schema. New `/areas` index page.
+- **Internal linking:** Areas in navbar, footer, every service page and the home page.
+- **Slug:** `/services/luxury-interior-design-hyderabad` is now `/services/home-interior-design-hyderabad` (301 redirect added).
+- **Schema:** `areaServed` is generated from `areas.ts`.
+- **Sitemap:** fixed `lastModified` (no longer "now" on every build); `/areas` added.
+- **Performance:** splash screen removed from the layout.
+- **Blog:** 3 new guides, short `metaTitle` for long titles.
+- **Share image:** `og-image.jpg` is now a real site photo (1200x630).
+
+## Still for you to do
+- Add real `openingHours` / `priceRange` to the schema in `layout.tsx` once you decide them.
+- Add the real area for each project in `projects.ts` and link projects to area pages when you have them.
+- Add YouTube / LinkedIn to `sameAs` and the footer only if those profiles exist.

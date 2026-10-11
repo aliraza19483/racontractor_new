@@ -17,11 +17,13 @@ const nextConfig: NextConfig = {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
   async redirects() {
-    return ["moldtech-technologies", "moldtech-packaging", "prithuvi-toyota-showroom", "deloitte-delhi"].map((slug) => ({
+    const legacy = [{ source: "/services/luxury-interior-design-hyderabad", destination: "/services/home-interior-design-hyderabad", permanent: true }];
+    const projects = ["moldtech-technologies", "moldtech-packaging", "prithuvi-toyota-showroom", "deloitte-delhi"].map((slug) => ({
       source: `/projects/${slug}`,
       destination: "/projects",
       permanent: true,
     }));
+    return [...legacy, ...projects];
   },
   allowedDevOrigins: ["10.111.112.230"],
   images: {

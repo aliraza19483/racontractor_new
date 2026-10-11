@@ -7,6 +7,7 @@ import { services, getService } from "@/lib/services";
 import { serviceContent, serviceMedia } from "@/lib/serviceContent";
 import { projectPages } from "@/lib/projects";
 import { siteConfig } from "@/lib/constants";
+import { areas } from "@/lib/areas";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -213,6 +214,17 @@ export default async function ServicePage({ params }: Props) {
               </ul>
             </div>
           )}
+        </div>
+      </section>
+
+      <section className="section section-beige">
+        <div className="container-luxury">
+          <h2 className="text-2xl font-[family-name:var(--font-playfair)] text-[var(--color-navy)] mb-4">{s.name} across Hyderabad</h2>
+          <ul className="flex flex-wrap gap-x-5 gap-y-2">
+            {areas.map((a) => (
+              <li key={a.slug}><Link className="text-[var(--color-gold-dark)] hover:underline" href={`/areas/${a.slug}`}>{a.name}</Link></li>
+            ))}
+          </ul>
         </div>
       </section>
 

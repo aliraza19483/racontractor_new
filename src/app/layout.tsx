@@ -1,10 +1,10 @@
 import { services } from "@/lib/services";
+import { areas } from "@/lib/areas";
 import type { Metadata } from "next";
 import { playfair, dmSans, cormorant } from "@/lib/fonts";
 import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import SplashScreen from "@/components/common/SplashScreen";
 import FloatingActions from "@/components/common/FloatingActions";
 import CookieConsent from "@/components/common/CookieConsent";
 import "./globals.css";
@@ -106,16 +106,7 @@ const jsonLdOrganization = {
   },
   hasMap: "https://maps.app.goo.gl/Fr5AXyx2DzKuqXZN8",
   areaServed: [
-    { "@type": "AdministrativeArea", name: "Financial District, Hyderabad" },
-    { "@type": "AdministrativeArea", name: "HITEC City, Hyderabad" },
-    { "@type": "AdministrativeArea", name: "Gachibowli, Hyderabad" },
-    { "@type": "AdministrativeArea", name: "Madhapur, Hyderabad" },
-    { "@type": "AdministrativeArea", name: "Kondapur, Hyderabad" },
-    { "@type": "AdministrativeArea", name: "Kokapet, Hyderabad" },
-    { "@type": "AdministrativeArea", name: "Jubilee Hills, Hyderabad" },
-    { "@type": "AdministrativeArea", name: "Banjara Hills, Hyderabad" },
-    { "@type": "AdministrativeArea", name: "Nanakramguda, Hyderabad" },
-    { "@type": "AdministrativeArea", name: "Raidurg, Hyderabad" },
+    ...areas.map((a) => ({ "@type": "AdministrativeArea", name: `${a.name}, Hyderabad` })),
     { "@type": "City", name: "Hyderabad" },
   ],
   sameAs: [
@@ -146,7 +137,6 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <SplashScreen />
         <SmoothScrollProvider>
           <Navbar />
           <main>{children}</main>

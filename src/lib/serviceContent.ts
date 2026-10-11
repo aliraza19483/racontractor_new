@@ -59,7 +59,7 @@ export const serviceContent: Record<string, ServiceContent> = {
     ],
     photoIds: [11, 13, 24, 30, 43, 49],
   },
-  "luxury-interior-design-hyderabad": {
+  "home-interior-design-hyderabad": {
     about: [
       "Home interiors that cover the whole room, not just furniture: wall panelling, TV units, wardrobes, false ceilings, lighting, painting and finishing, planned together and executed by one team.",
       "We work with your budget and preferences, and confirm materials and finishes with you before ordering.",

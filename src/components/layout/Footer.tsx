@@ -7,6 +7,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import { siteConfig, navItems } from "@/lib/constants";
+import { areas } from "@/lib/areas";
 
 // Inline SVG social icons (lucide-react removed brand icons)
 const SocialIcons = {
@@ -155,6 +156,21 @@ export default function Footer() {
             >
               Send an enquiry <ArrowUpRight className="w-4 h-4" />
             </Link>
+          </div>
+          {/* Areas */}
+          <div className="lg:col-span-4">
+            <h4 className="text-sm font-semibold uppercase tracking-[0.15em] text-white mb-4 font-[family-name:var(--font-dm-sans)]">
+              Areas We Serve
+            </h4>
+            <ul className="flex flex-wrap gap-x-5 gap-y-2">
+              {areas.map((a) => (
+                <li key={a.slug}>
+                  <Link href={`/areas/${a.slug}`} className="text-sm text-white/50 hover:text-[var(--color-gold)] transition-colors font-[family-name:var(--font-dm-sans)]">
+                    {a.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

@@ -58,7 +58,7 @@ export const services: ServicePage[] = [
       },
       AREA_FAQ,
     ],
-    related: ["civil-contractors-hyderabad", "luxury-interior-design-hyderabad", "commercial-interior-contractors-hyderabad"],
+    related: ["civil-contractors-hyderabad", "home-interior-design-hyderabad", "commercial-interior-contractors-hyderabad"],
   },
   {
     slug: "civil-contractors-hyderabad",
@@ -83,7 +83,7 @@ export const services: ServicePage[] = [
     related: ["turnkey-construction-hyderabad", "painting-contractors-hyderabad", "electrical-contractors-hyderabad"],
   },
   {
-    slug: "luxury-interior-design-hyderabad",
+    slug: "home-interior-design-hyderabad",
     name: "Home Interior Design",
     h1: "Home Interior Design & Execution in Hyderabad",
     metaTitle: "Home Interior Design & Execution in Hyderabad",
@@ -154,7 +154,7 @@ export const services: ServicePage[] = [
     image: "/images/services/kitchen/kitchen-1.jpg",
     gallery: [1, 2, 3, 4].map((n) => `/images/services/kitchen/kitchen-${n}.jpg`),
     faqs: [COST_FAQ, BOQ_FAQ, AREA_FAQ],
-    related: ["luxury-interior-design-hyderabad", "carpentry-wardrobes-hyderabad", "electrical-contractors-hyderabad"],
+    related: ["home-interior-design-hyderabad", "carpentry-wardrobes-hyderabad", "electrical-contractors-hyderabad"],
   },
   {
     slug: "false-ceiling-hyderabad",
@@ -176,7 +176,7 @@ export const services: ServicePage[] = [
     image: "/images/services/false-ceiling/ceiling-1.jpg",
     gallery: [1, 2, 3, 4, 5].map((n) => `/images/services/false-ceiling/ceiling-${n}.jpg`),
     faqs: [COST_FAQ, AREA_FAQ],
-    related: ["electrical-contractors-hyderabad", "painting-contractors-hyderabad", "luxury-interior-design-hyderabad"],
+    related: ["electrical-contractors-hyderabad", "painting-contractors-hyderabad", "home-interior-design-hyderabad"],
   },
   {
     slug: "painting-contractors-hyderabad",
@@ -198,7 +198,7 @@ export const services: ServicePage[] = [
     image: "/images/services/painting/painting-1.jpg",
     gallery: [1, 2, 3, 4, 5].map((n) => `/images/services/painting/painting-${n}.jpg`),
     faqs: [COST_FAQ, AREA_FAQ],
-    related: ["false-ceiling-hyderabad", "civil-contractors-hyderabad", "luxury-interior-design-hyderabad"],
+    related: ["false-ceiling-hyderabad", "civil-contractors-hyderabad", "home-interior-design-hyderabad"],
   },
   {
     slug: "electrical-contractors-hyderabad",
@@ -242,7 +242,7 @@ export const services: ServicePage[] = [
     image: "/images/categories/carpentry.jpg",
     gallery: [],
     faqs: [COST_FAQ, AREA_FAQ],
-    related: ["modular-kitchen-hyderabad", "luxury-interior-design-hyderabad", "painting-contractors-hyderabad"],
+    related: ["modular-kitchen-hyderabad", "home-interior-design-hyderabad", "painting-contractors-hyderabad"],
   },
 ];
 

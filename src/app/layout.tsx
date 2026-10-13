@@ -9,9 +9,9 @@ import FloatingActions from "@/components/common/FloatingActions";
 import CookieConsent from "@/components/common/CookieConsent";
 import "./globals.css";
 
-const TITLE = "Civil & Interior Contractors in Hyderabad | RA Contractor";
+const TITLE = "False Ceiling & Turnkey Interior Contractors in Hyderabad | RA Contractor";
 const DESC =
-  "RA Contractor is a Hyderabad-based civil construction and interior contractor offering turnkey construction, home interiors, renovations and commercial fit-outs.";
+  "Looking for premium false ceiling contractors in Hyderabad? RA Contractor provides expert gypsum boarding, POP design, profile lighting, and turnkey civil interior services across Jubilee Hills, Gachibowli, Banjara Hills, and Madhapur. Call +91 83748 97487 for a free site inspection.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://racontractor.in"),
@@ -73,7 +73,7 @@ const jsonLdWebsite = {
 
 const jsonLdOrganization = {
   "@context": "https://schema.org",
-  "@type": "GeneralContractor",
+  "@type": ["HomeAndConstructionBusiness", "GeneralContractor"],
   name: "RA CONTRACTOR",
   alternateName: "RA Contractor",
   image: "https://racontractor.in/opengraph-image",
@@ -82,7 +82,20 @@ const jsonLdOrganization = {
   telephone: "+91 83748 97487",
   email: "racontractor35@gmail.com",
   description:
-    "Hyderabad-based turnkey civil and interior contractor: residential construction, home interiors, commercial fit-outs and complete project execution.",
+    "Premium false ceiling and turnkey interior contractors in Hyderabad. Expert gypsum boarding, POP design, profile lighting, and civil construction across Jubilee Hills, Gachibowli, Banjara Hills, Madhapur, and all major Hyderabad localities.",
+  serviceType: "Contractor",
+  knowsAbout: [
+    "False Ceiling Installation",
+    "Gypsum Boarding",
+    "POP Ceiling Design",
+    "Turnkey Interior Contractors",
+    "Profile Lighting Installation",
+    "Moisture Resistant PVC Ceiling",
+    "Civil Construction Hyderabad",
+    "Cove Lighting Design",
+    "Luxury Villa Renovation",
+    "Commercial Fit-out Contractor",
+  ],
   address: {
     "@type": "PostalAddress",
     streetAddress: "Allapur Rd, near JK Point, Swaraj Nagar, Borabanda",

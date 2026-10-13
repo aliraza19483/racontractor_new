@@ -6,7 +6,7 @@ import { posts } from "@/lib/blog";
 
 const BASE = "https://racontractor.in";
 // Update this date when page content really changes (not on every build).
-const UPDATED = new Date("2026-10-11");
+const UPDATED = new Date("2026-10-14");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = UPDATED;

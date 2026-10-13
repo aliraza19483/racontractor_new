@@ -26,7 +26,7 @@ const seeds: Seed[] = [
     intro:
       "Jubilee Hills is known for independent houses, villas and boutique showrooms. Many homes here are older and are being renovated rather than built new, so work usually starts with checking existing walls, wiring and ceilings before any design is finalised.",
     properties: ["Independent houses and villas", "Premium apartments", "Boutiques and showrooms"],
-    popularWork: ["Villa renovation and repainting", "Feature false ceilings with cove lighting", "Custom wardrobes and wall panelling", "Concealed re-wiring"],
+    popularWork: ["Gypsum false ceiling with cove lighting and profile lighting", "Villa renovation and repainting", "Custom wardrobes and wall panelling", "Concealed re-wiring"],
     siteNote:
       "Older buildings often need electrical re-wiring and surface repair first. We list these items separately in the BOQ so you can see them before you commit.",
     nearby: ["banjara-hills-hyderabad", "yousufguda-hyderabad", "madhapur-hyderabad"],
@@ -41,7 +41,7 @@ const seeds: Seed[] = [
     intro:
       "Banjara Hills mixes independent houses, apartment buildings, clinics, restaurants and showrooms. Residential owners usually ask for ceilings, lighting and carpentry, while commercial owners need quick, well-supervised fit-outs.",
     properties: ["Apartments and independent houses", "Clinics and offices", "Restaurants and showrooms"],
-    popularWork: ["Apartment interiors", "Commercial and showroom fit-outs", "False ceiling and lighting", "Painting and wall finishes"],
+    popularWork: ["False ceiling and POP design with profile lighting", "Apartment interiors", "Commercial and showroom fit-outs", "Painting and wall finishes"],
     siteNote:
       "Many buildings here have working hours and lift or parking rules for contractors. We plan material delivery and noisy work around your building's permission timings.",
     nearby: ["jubilee-hills-hyderabad", "ameerpet-hyderabad", "yousufguda-hyderabad"],
@@ -56,7 +56,7 @@ const seeds: Seed[] = [
     intro:
       "Gachibowli has large gated communities, high-rise apartments and many offices around the IT corridor. Flat owners typically want a full interior or specific upgrades, while companies want office fit-outs delivered on a fixed timeline.",
     properties: ["Gated-community apartments and villas", "High-rise flats", "Offices and co-working spaces"],
-    popularWork: ["Full-home interiors for 2 and 3 BHK flats", "Office ceilings and partitions", "Modular kitchens and wardrobes", "Electrical and lighting"],
+    popularWork: ["Gypsum false ceilings and boarding for gated-community flats", "Full-home interiors for 2 and 3 BHK flats", "Office ceilings and partitions", "Modular kitchens and wardrobes", "Electrical and lighting"],
     siteNote:
       "Gated communities usually require contractor registration, gate passes and fixed working hours. Check your community's rules early; we plan the schedule around them.",
     nearby: ["kondapur-hyderabad", "financial-district-hyderabad", "hitec-city-hyderabad"],
@@ -71,7 +71,7 @@ const seeds: Seed[] = [
     intro:
       "Kondapur is dense with apartment communities close to major IT offices. Most requests are for 2 and 3 BHK interiors, modular kitchens, wardrobes and false ceilings, often on a tight move-in date.",
     properties: ["2 and 3 BHK apartments", "Gated communities", "Small offices and retail units"],
-    popularWork: ["Complete 2 and 3 BHK interiors", "Modular kitchens", "Wardrobes and TV units", "False ceilings and painting"],
+    popularWork: ["False ceilings, POP design and profile lighting", "Complete 2 and 3 BHK interiors", "Modular kitchens", "Wardrobes and TV units", "Painting"],
     siteNote:
       "In apartment buildings, noise and lift-use limits matter. We stage the work so the noisiest tasks are done first and finishing is left for the end.",
     nearby: ["gachibowli-hyderabad", "madhapur-hyderabad", "hitec-city-hyderabad"],
@@ -86,7 +86,7 @@ const seeds: Seed[] = [
     intro:
       "Madhapur is a major commercial and residential area next to HITEC City. We are most often called for office ceilings, partitions and lighting, as well as apartment interiors for people working nearby.",
     properties: ["Offices and co-working spaces", "Apartments", "Retail and showroom units"],
-    popularWork: ["Office ceiling and lighting work", "Partitions and wall panelling", "Painting and finishing", "Apartment interiors"],
+    popularWork: ["Office false ceiling and profile lighting work", "Partitions and wall panelling", "Painting and finishing", "Apartment interiors"],
     siteNote:
       "Office fit-outs often have to run after hours or in phases so that neighbouring tenants are not disturbed. We plan the work in phases where needed.",
     nearby: ["hitec-city-hyderabad", "kondapur-hyderabad", "jubilee-hills-hyderabad", "yousufguda-hyderabad"],
@@ -228,6 +228,66 @@ const seeds: Seed[] = [
     faq: {
       q: "Can you do a full 3 BHK interior in a Miyapur apartment?",
       a: "Yes. A full 3 BHK covers carpentry, ceilings, lighting, electrical and painting under one scope. We price it against an itemised BOQ after inspecting your flat.",
+    },
+  },
+  {
+    name: "Secunderabad",
+    tagline: "False ceilings, offices and heritage home renovations",
+    intro:
+      "Secunderabad is one of Hyderabad's twin cities with a mix of older independent homes, army residential areas, commercial buildings and offices. False ceiling upgrades, POP design and commercial fit-outs are the most common requests here.",
+    properties: ["Independent houses and bungalows", "Commercial offices", "Apartments and residential complexes"],
+    popularWork: ["False ceiling and POP design for homes and offices", "Gypsum boarding with cove lighting", "Commercial office fit-outs", "Painting and wall finishing", "Electrical and concealed wiring"],
+    siteNote:
+      "Older homes in Secunderabad sometimes need structural checks before ceiling work begins. We inspect the existing slab and beam positions before finalising the ceiling design.",
+    nearby: ["begumpet-hyderabad", "ameerpet-hyderabad", "hitec-city-hyderabad"],
+    faq: {
+      q: "Can you install a gypsum false ceiling in an older Secunderabad home?",
+      a: "Yes. We inspect the existing roof slab first, then plan the ceiling grid and cove lighting layout to suit the room height. Older homes often gain the most from a well-designed false ceiling.",
+    },
+  },
+  {
+    name: "Begumpet",
+    tagline: "Commercial offices and premium apartment interiors",
+    intro:
+      "Begumpet is a prime commercial and residential hub close to the airport road corridor. Office buildings, embassies, showrooms and high-end apartments make it one of Hyderabad's most active zones for interior fit-out and false ceiling work.",
+    properties: ["Corporate offices and showrooms", "Premium apartments", "Embassies and institutional buildings"],
+    popularWork: ["False ceiling and profile lighting for offices", "Gypsum boarding and POP design", "Luxury apartment interiors", "Partitions and glass walls", "Painting and premium wall finishes"],
+    siteNote:
+      "Many commercial buildings in Begumpet have security clearance requirements for contractors. We carry all necessary documentation and coordinate entry with your facility or admin team.",
+    nearby: ["secunderabad-hyderabad", "ameerpet-hyderabad", "banjara-hills-hyderabad"],
+    faq: {
+      q: "Do you handle false ceiling and fit-out work in Begumpet offices?",
+      a: "Yes. We cover ceilings, profile lighting, partitions, electrical and painting for offices under one contract, with work scheduled to avoid disruption to your operations.",
+    },
+  },
+  {
+    name: "Kompally",
+    tagline: "Growing residential layouts and villa communities",
+    intro:
+      "Kompally in northern Hyderabad is one of the fastest growing residential zones with independent villas, plotted layouts and new apartment communities. Homeowners here often need complete interiors from scratch, including false ceilings, modular kitchens and full carpentry.",
+    properties: ["Independent villas and plots", "New apartment communities", "Gated residential layouts"],
+    popularWork: ["False ceiling with cove and spot lighting for villas", "Complete bare-shell to move-in interiors", "Modular kitchens and wardrobes", "POP design and wall textures", "Electrical layout and concealed wiring"],
+    siteNote:
+      "New constructions in Kompally often hand over as bare shells. We plan the full electrical, ceiling and carpentry sequence before starting so there is no rework later.",
+    nearby: ["secunderabad-hyderabad", "miyapur-hyderabad", "kukatpally-hyderabad"],
+    faq: {
+      q: "Can you complete the full interior of a new villa in Kompally?",
+      a: "Yes. Turnkey scope covers electrical layout, false ceilings, carpentry, modular kitchen, painting and finishing — all under one contract with a dedicated site manager.",
+    },
+  },
+  {
+    name: "Film Nagar",
+    tagline: "Luxury villa interiors and premium false ceiling work",
+    intro:
+      "Film Nagar is one of Hyderabad's most prestigious residential localities, home to many luxury villas and bungalows. Clients here typically request high-end false ceilings with integrated ambient lighting, premium carpentry and full villa renovation or interior services.",
+    properties: ["Luxury villas and bungalows", "Premium independent houses", "High-value residential properties"],
+    popularWork: ["Luxury false ceiling with ambient cove and profile lighting", "High-end gypsum boarding and POP design", "Premium villa renovation", "Bespoke wardrobes and wall panelling", "Turnkey villa interiors"],
+    siteNote:
+      "Luxury properties in Film Nagar usually need detailed design approval before site work begins. We provide 3D ceiling layout visualisations on request so clients can confirm the look before execution.",
+    nearby: ["jubilee-hills-hyderabad", "banjara-hills-hyderabad", "madhapur-hyderabad"],
+    faq: {
+      q: "What kind of false ceiling is best for a luxury villa in Film Nagar?",
+      a: "For luxury villas we typically recommend gypsum board false ceilings with integrated LED cove lighting, recessed spotlights and concealed profile light channels. We present a layout plan and material samples before starting work.",
     },
   },
 ];

@@ -1,20 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
+
+function subscribe(callback: () => void) {
+  window.addEventListener("storage", callback);
+  return () => window.removeEventListener("storage", callback);
+}
+
+function getSnapshot() {
+  if (typeof window === "undefined") return false;
+  const isDev = process.env.NODE_ENV === "development";
+  const forceSplash = window.location.search.includes("splash");
+  const shown = sessionStorage.getItem("ra_splash_shown_v2");
+  if (forceSplash || isDev) return false;
+  return Boolean(shown);
+}
+
+function getServerSnapshot() {
+  return false;
+}
 
 export default function SplashScreen() {
+  const isAlreadyShown = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const [progress, setProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const isDev = process.env.NODE_ENV === "development";
-    const forceSplash = typeof window !== "undefined" && window.location.search.includes("splash");
-    const shown = typeof window !== "undefined" && sessionStorage.getItem("ra_splash_shown_v2");
-
-    if (shown && !forceSplash && !isDev) {
-      setIsLoading(false);
+    if (isAlreadyShown) {
       return;
     }
 
@@ -38,7 +51,11 @@ export default function SplashScreen() {
     }, 20);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [isAlreadyShown]);
+
+  if (isAlreadyShown) {
+    return null;
+  }
 
   const getTagline = () => {
     if (progress < 35) return "Civil Construction & Structural Integrity";

@@ -7,6 +7,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FloatingActions from "@/components/common/FloatingActions";
 import CookieConsent from "@/components/common/CookieConsent";
+import SplashScreen from "@/components/common/SplashScreen";
 import "./globals.css";
 
 const TITLE = "False Ceiling & Turnkey Interior Contractors in Hyderabad | RA Contractor";
@@ -140,6 +141,24 @@ export default function RootLayout({
       className={`${playfair.variable} ${dmSans.variable} ${cormorant.variable}`}
     >
       <head>
+        {/* Google tag (gtag.js) */}
+        {/* eslint-disable @next/next/next-script-for-ga */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18503078719"
+        />
+        <script
+          id="google-tag-aw"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-18503078719');
+            `,
+          }}
+        />
+        {/* eslint-enable @next/next/next-script-for-ga */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}
@@ -150,6 +169,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <SplashScreen />
         <SmoothScrollProvider>
           <Navbar />
           <main>{children}</main>

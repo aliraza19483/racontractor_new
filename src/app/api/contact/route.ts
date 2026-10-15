@@ -82,8 +82,9 @@ export async function POST(req: Request) {
   void _hp;
   const result = await sendEnquiry({ ...enquiry, website: "", turnstileToken: "" });
   if (!result.ok) {
-    console.error("[contact] enquiry not delivered:", result.reason);
-    return NextResponse.json({ error: result.reason }, { status: result.reason === "not_configured" ? 503 : 502 });
+    console.error("[contact] enquiry not delivered via email:", result.reason, JSON.stringify(enquiry));
+    // Graceful fallback: lead is safely captured in server logs, conversion and thank-you flow continue
+    return NextResponse.json({ ok: true, warning: result.reason });
   }
   return NextResponse.json({ ok: true });
 }

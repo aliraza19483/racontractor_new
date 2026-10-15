@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { ArrowRight, CheckCircle2, ChevronLeft, MessageCircle } from "lucide-react";
 import { siteConfig } from "@/lib/constants";
 import Turnstile from "@/components/contact/Turnstile";
+import { ENQUIRY_CONVERSION_KEY, trackGoogleAdsContactConversion } from "@/lib/analytics";
 
 const serviceOptions = [
   "Civil Construction",
@@ -321,9 +322,11 @@ export default function EnquiryForm() {
       if (res.ok) {
         try {
           window.localStorage.removeItem(DRAFT_KEY);
+          window.sessionStorage.setItem(ENQUIRY_CONVERSION_KEY, "true");
         } catch {
           /* ignore */
         }
+        trackGoogleAdsContactConversion();
         setStatus("success");
         router.push("/thank-you");
         return;

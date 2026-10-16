@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CheckCircle2, MessageCircle, Phone } from "lucide-react";
 import { siteConfig } from "@/lib/constants";
 import TrackEvent from "@/components/common/TrackEvent";
+import { GOOGLE_ADS_ID, GOOGLE_ADS_CONVERSION_LABEL } from "@/lib/analytics";
 
 export const metadata: Metadata = {
   title: "Thank You",
@@ -15,9 +16,27 @@ export default function ThankYouPage() {
   const wa = `https://wa.me/${siteConfig.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(
     "Hello RA Contractor, I just sent an enquiry from your website."
   )}`;
+  const conversionSendTo = `${GOOGLE_ADS_ID}/${GOOGLE_ADS_CONVERSION_LABEL}`;
 
   return (
     <section className="bg-[var(--color-navy)] min-h-[70vh] flex items-center pt-32 pb-16">
+      {/* Event snippet for Google Ads Contact conversion page - visible in View Page Source */}
+      <script
+        id="google-ads-contact-conversion"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            if (!window.__ra_conversion_fired) {
+              window.__ra_conversion_fired = true;
+              if (typeof gtag === 'function') {
+                gtag('event', 'conversion', { 'send_to': '${conversionSendTo}', 'value': 1.0, 'currency': 'INR' });
+              } else {
+                window.dataLayer.push(['event', 'conversion', { 'send_to': '${conversionSendTo}', 'value': 1.0, 'currency': 'INR' }]);
+              }
+            }
+          `,
+        }}
+      />
       <TrackEvent name="generate_lead" params={{ form: "enquiry" }} />
       <div className="container-luxury text-center">
         <CheckCircle2 className="mx-auto mb-5 h-12 w-12 text-[var(--color-gold)]" aria-hidden="true" />

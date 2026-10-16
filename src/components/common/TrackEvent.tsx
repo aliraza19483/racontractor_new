@@ -4,28 +4,19 @@ import { useEffect } from "react";
 import {
   trackEvent,
   trackGoogleAdsContactConversion,
-  ENQUIRY_CONVERSION_KEY,
 } from "@/lib/analytics";
 
 /**
  * Fires conversion tracking on /thank-you page.
- * Only records a Google Ads conversion if the visitor genuinely submitted the enquiry form.
+ * Uses window.__ra_conversion_fired deduplication so exactly one conversion event fires.
  */
 export default function TrackEvent({ name, params }: { name: string; params?: Record<string, unknown> }) {
   useEffect(() => {
     // 1. GA4 event (if configured)
     trackEvent(name, params);
 
-    // 2. Google Ads Contact conversion: verify genuine submission
-    try {
-      const isEnquirySubmission = window.sessionStorage.getItem(ENQUIRY_CONVERSION_KEY);
-      if (isEnquirySubmission === "true") {
-        trackGoogleAdsContactConversion();
-        window.sessionStorage.removeItem(ENQUIRY_CONVERSION_KEY);
-      }
-    } catch {
-      trackGoogleAdsContactConversion();
-    }
+    // 2. Google Ads Contact conversion: runs on client transition if not already fired by inline script
+    trackGoogleAdsContactConversion();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return null;
